@@ -3,7 +3,7 @@ package fi.tuni.androidsudoku.sudoku;
 /**
  *
  */
-public class Generator {
+public class SudokuPuzzle {
 
     /**
      *
@@ -13,7 +13,7 @@ public class Generator {
     /**
      *
      */
-    public Generator() {
+    public SudokuPuzzle() {
         puzzle = new Cell[Constants.GRID_SIZE];
 
         for (int i = 0; i < puzzle.length; i++) {
