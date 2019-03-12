@@ -1,7 +1,5 @@
 package fi.tuni.androidsudoku.sudoku;
 
-import java.util.Locale;
-
 /**
  *
  */
@@ -30,15 +28,6 @@ public class Cell {
         setLocked(false);
         setIndex(index);
         setEmpty();
-    }
-
-    /**
-     *
-     * @param value
-     * @return
-     */
-    public boolean allowedValue(int value) {
-        return value >= Constants.MIN_CELL_VALUE && value <= Constants.MAX_CELL_VALUE;
     }
 
     /**
@@ -147,9 +136,13 @@ public class Cell {
     @Override
     public String toString() {
         return String.format(
-            Locale.ENGLISH,
+            java.util.Locale.ENGLISH,
             "[value = %d, index = %d, column = %d, row = %d, block = %d]",
-            getValue(), getIndex(), getColumn(), getRow(), getBlock()
+            getValue(),
+            getIndex(),
+            getColumn(),
+            getRow(),
+            getBlock()
         );
     }
 
