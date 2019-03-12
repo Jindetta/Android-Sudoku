@@ -152,4 +152,14 @@ public class Cell {
             getValue(), getIndex(), getColumn(), getRow(), getBlock()
         );
     }
+
+    /**
+     *
+     * @param value
+     * @return
+     */
+    public static boolean allowedValue(int value) {
+        return value >= Constants.MIN_CELL_VALUE &&
+               value <= Constants.MAX_CELL_VALUE;
+    }
 }
