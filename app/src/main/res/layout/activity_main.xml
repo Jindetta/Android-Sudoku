@@ -7,24 +7,28 @@
               android:orientation="vertical"
               tools:context=".MainActivity">
 
-    <Button android:layout_height="wrap_content"
+    <Button android:id="@+id/start"
+            android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:text="@string/start"
-            android:onClick="click"/>
+            android:onClick="clickHandler"/>
 
-    <Button android:layout_height="wrap_content"
+    <Button android:id="@+id/scoreboard"
+            android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:text="@string/scoreboards"
-            android:onClick="click"/>
+            android:onClick="clickHandler"/>
 
-    <Button android:layout_height="wrap_content"
+    <Button android:id="@+id/settings"
+            android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:text="@string/settings"
-            android:onClick="click"/>
+            android:onClick="clickHandler"/>
 
-    <Button android:layout_height="wrap_content"
+    <Button android:id="@+id/exit"
+            android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:text="@string/exit"
-            android:onClick="click"/>
+            android:onClick="clickHandler"/>
 
 </LinearLayout>
