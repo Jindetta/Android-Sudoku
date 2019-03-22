@@ -43,6 +43,10 @@ public class Cell {
      * @param index
      */
     public void setIndex(int index) {
+        if (index < 0 || index >= Constants.GRID_SIZE) {
+            throw new IllegalArgumentException("Cell index cannot be out-of-bounds.");
+        }
+
         this.index = index;
     }
 
@@ -87,9 +91,17 @@ public class Cell {
 
     /**
      *
+     * @return
+     */
+    public boolean isEmpty() {
+        return value == Constants.EMPTY_CELL_VALUE;
+    }
+
+    /**
+     *
      */
     public void setEmpty() {
-        value = 0;
+        value = Constants.EMPTY_CELL_VALUE;
     }
 
     /**
@@ -137,12 +149,13 @@ public class Cell {
     public String toString() {
         return String.format(
             java.util.Locale.ENGLISH,
-            "[value = %d, index = %d, column = %d, row = %d, block = %d]",
+            "[value: %d, index: %d, column: %d, row: %d, block: %d, neighbours: %d]",
             getValue(),
             getIndex(),
             getColumn(),
             getRow(),
-            getBlock()
+            getBlock(),
+            getNeighboursCount()
         );
     }
 
