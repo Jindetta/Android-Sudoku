@@ -3,7 +3,7 @@ package fi.tuni.androidsudoku.sudoku;
 /**
  *
  */
-public class Cell {
+public class Cell implements Cloneable {
 
     /**
      *
@@ -134,11 +134,35 @@ public class Cell {
      * @param cell
      * @return
      */
-    public boolean equals(Cell cell) {
-        return cell != null &&
-               cell.isLocked() == isLocked() &&
-               cell.getValue() == getValue() &&
-               cell.getIndex() == getIndex();
+    @Override
+    public Cell clone() {
+        try {
+            return (Cell) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new IllegalStateException();
+        }
+    }
+
+    /**
+     *
+     * @param object
+     * @return
+     */
+    @Override
+    public boolean equals(Object object) {
+        if (object == this) {
+            return true;
+        }
+
+        if (object != null && object.getClass() == getClass()) {
+            Cell cell = (Cell) object;
+
+            return cell.isLocked() == isLocked() &&
+                   cell.getValue() == getValue() &&
+                   cell.getIndex() == getIndex();
+        }
+
+        return false;
     }
 
     /**
