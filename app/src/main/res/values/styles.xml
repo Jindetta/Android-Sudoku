@@ -1,17 +1,19 @@
 <resources>
-    <!-- Base application theme. -->
+    <!-- Application -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <!-- Custom styles -->
     <style name="SudokuCell" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/cellDefaultFont</item>
+        <item name="android:textSize">@dimen/cellTextSize</item>
         <item name="android:background">@drawable/cell</item>
         <item name="android:focusableInTouchMode">true</item>
         <item name="android:onClick">cellClicked</item>
         <item name="android:focusable">true</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">36sp</item>
-        <item name="android:padding">0dp</item>
     </style>
 </resources>
