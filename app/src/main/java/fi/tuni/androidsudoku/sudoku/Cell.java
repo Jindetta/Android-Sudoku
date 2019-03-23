@@ -217,7 +217,7 @@ public class Cell implements Cloneable {
      *
      * @return
      */
-    private int getBlock() {
+    public int getBlock() {
         int row = index / (Constants.GRID_SET * Constants.GRID);
         return row * Constants.GRID + index / Constants.GRID % Constants.GRID;
     }
@@ -226,7 +226,7 @@ public class Cell implements Cloneable {
      *
      * @return
      */
-    private int getColumn() {
+    public int getColumn() {
         return index % Constants.GRID_SET;
     }
 
@@ -234,7 +234,7 @@ public class Cell implements Cloneable {
      *
      * @return
      */
-    private int getRow() {
+    public int getRow() {
         return index / Constants.GRID_SET;
     }
 
