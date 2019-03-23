@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Application -->
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
     <!-- Custom colors -->
-    <color name="cellClue">#FF0000</color>
+    <color name="cellLockedFont">#FF0000</color>
+    <color name="cellLockedBackground">#CFCFCF</color>
+
+    <color name="cellDefaultFont">#111111</color>
+    <color name="cellDefaultBackground">#FFFFFF</color>
+
+    <color name="cellBorderHighlight">#000000</color>
+    <color name="cellBorder">#1C1C1C</color>
+
+    <color name="cellFocusToggle">#FFFFAA</color>
+    <color name="cellFocused">#FFFFDD</color>
 </resources>
