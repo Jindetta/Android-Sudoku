@@ -57,4 +57,17 @@ public class PuzzleActivity extends AppCompatActivity {
             layout.addView(row, ROW_PARAMS);
         }
     }
+
+    /**
+     *
+     * @param view
+     */
+    public void cellClicked(View view) {
+        if (view.isEnabled()) {
+            CellView cellView = (CellView) view;
+
+            int randomValue = (int) (Math.random() * 8) + 1;
+            cellView.setText(String.valueOf(randomValue));
+        }
+    }
 }

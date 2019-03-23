@@ -8,6 +8,7 @@
     <style name="SudokuCell" parent="android:Widget.TextView">
         <item name="android:background">@drawable/cell</item>
         <item name="android:focusableInTouchMode">true</item>
+        <item name="android:onClick">cellClicked</item>
         <item name="android:focusable">true</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">36sp</item>
