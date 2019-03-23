@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="cellBorder">1dp</dimen>
+    <dimen name="cellBorderThick">5dp</dimen>
+    <dimen name="cellTextSize">36dp</dimen>
+</resources>
