@@ -1,5 +1,7 @@
 package fi.tuni.androidsudoku.sudoku;
 
+import java.util.*;
+
 /**
  *
  */
@@ -22,12 +24,99 @@ public class Cell implements Cloneable {
 
     /**
      *
-     * @param index
      */
-    public Cell(int index) {
-        setLocked(false);
+    private Set<Cell> neighbours;
+
+    /**
+     *
+     * @param index
+     * @param value
+     * @param locked
+     */
+    public Cell(int index, int value, boolean locked) {
+        neighbours = null;
+
+        setLocked(locked);
         setIndex(index);
-        setEmpty();
+
+        if (value != Constants.EMPTY_CELL_VALUE) {
+            setValue(value);
+        } else {
+            setEmpty();
+        }
+    }
+
+    /**
+     *
+     * @param puzzle
+     */
+    public void setupNeighbours(Cell[] puzzle) {
+        neighbours = new HashSet<>();
+
+        for (Cell cell : puzzle) {
+            if (cell.getIndex() != getIndex()) {
+                if (cell.isNeighbour(this) || cell.getColumn() == getColumn()
+                    || cell.getBlock() == getBlock() || cell.getRow() == getRow()) {
+                    neighbours.add(cell);
+                }
+            }
+        }
+    }
+
+    /**
+     *
+     * @param cell
+     * @return
+     */
+    private boolean isNeighbour(Cell cell) {
+        return neighbours != null && neighbours.contains(cell);
+    }
+
+    /**
+     *
+     * @param value
+     * @return
+     */
+    private boolean isValidCellValue(int value) {
+        if (allowedValue(value)) {
+            if (neighbours != null) {
+                for (Cell cell : neighbours) {
+                    if (value == cell.getValue()) {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public List<Integer> getValidValues() {
+        List<Integer> results = new ArrayList<>();
+
+        for (int value : Constants.ALLOWED_VALUES) {
+            if (isValidCellValue(value)) {
+                results.add(value);
+            }
+        }
+
+        return results;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getValidValuesCount() {
+        List<Integer> values = getValidValues();
+
+        return values.size();
     }
 
     /**
@@ -42,7 +131,7 @@ public class Cell implements Cloneable {
      *
      * @param index
      */
-    public void setIndex(int index) {
+    private void setIndex(int index) {
         if (index < 0 || index >= Constants.GRID_SIZE) {
             throw new IllegalArgumentException("Cell index cannot be out-of-bounds.");
         }
@@ -60,13 +149,33 @@ public class Cell implements Cloneable {
 
     /**
      *
+     * @return
+     */
+    public boolean setNextValue() {
+        List<Integer> values = getValidValues();
+        int index = values.indexOf(getValue());
+
+        if (index != -1) {
+            if (++index < values.size()) {
+                return setValue(values.get(index));
+            }
+        } else if (!values.isEmpty()) {
+            return setValue(values.get(0));
+        }
+
+        return false;
+    }
+
+    /**
+     *
      *
      * @param value
      * @return
      */
     public boolean setValue(int value) {
-        if (allowedValue(value)) {
+        if (value != getValue() && isValidCellValue(value)) {
             this.value = value;
+
             return true;
         }
 
@@ -108,7 +217,7 @@ public class Cell implements Cloneable {
      *
      * @return
      */
-    public int getBlock() {
+    private int getBlock() {
         int row = index / (Constants.GRID_SET * Constants.GRID);
         return row * Constants.GRID + index / Constants.GRID % Constants.GRID;
     }
@@ -117,7 +226,7 @@ public class Cell implements Cloneable {
      *
      * @return
      */
-    public int getColumn() {
+    private int getColumn() {
         return index % Constants.GRID_SET;
     }
 
@@ -125,13 +234,12 @@ public class Cell implements Cloneable {
      *
      * @return
      */
-    public int getRow() {
+    private int getRow() {
         return index / Constants.GRID_SET;
     }
 
     /**
      *
-     * @param cell
      * @return
      */
     @Override
@@ -187,7 +295,7 @@ public class Cell implements Cloneable {
      * @param value
      * @return
      */
-    public static boolean allowedValue(int value) {
+    private static boolean allowedValue(int value) {
         return value >= Constants.MIN_CELL_VALUE &&
                value <= Constants.MAX_CELL_VALUE;
     }
