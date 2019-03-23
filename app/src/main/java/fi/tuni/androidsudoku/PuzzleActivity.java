@@ -85,11 +85,9 @@ public class PuzzleActivity extends AppCompatActivity {
      * @param view
      */
     public void cellClicked(View view) {
-        if (view.isEnabled()) {
-            CellView cellView = (CellView) view;
+        CellView cellView = (CellView) view;
 
-            int randomValue = (int) (Math.random() * 8) + 1;
-            cellView.setText(String.valueOf(randomValue));
-        }
+        int randomValue = (int) (Math.random() * 9) + 1;
+        cellView.setText(String.valueOf(randomValue));
     }
 }
