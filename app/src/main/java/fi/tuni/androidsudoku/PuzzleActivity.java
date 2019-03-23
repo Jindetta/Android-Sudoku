@@ -1,10 +1,13 @@
 package fi.tuni.androidsudoku;
 
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.ContextThemeWrapper;
+import android.view.View;
 import android.widget.*;
+
 import fi.tuni.androidsudoku.sudoku.Constants;
+import fi.tuni.androidsudoku.sudoku.SudokuPuzzle;
 
 /**
  *
@@ -14,7 +17,12 @@ public class PuzzleActivity extends AppCompatActivity {
     /**
      *
      */
-    private TextView[] cells;
+    private CellView[] cells;
+
+    /**
+     *
+     */
+    private SudokuPuzzle puzzle;
 
     /**
      *
@@ -39,16 +47,31 @@ public class PuzzleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_puzzle);
 
-        cells = new TextView[Constants.GRID_SIZE];
+        cells = new CellView[Constants.GRID_SIZE];
+        puzzle = new SudokuPuzzle(SudokuPuzzle.Difficulty.EASY);
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
         TableLayout layout = findViewById(R.id.puzzle);
+
+        final int MAX_WIDTH = layout.getWidth() / Constants.GRID_SET;
+        final int MAX_HEIGHT = layout.getHeight() / Constants.GRID_SET;
+
         int index = 0;
 
         for (int i = 0; i < Constants.GRID_SET; i++) {
             TableRow row = new TableRow(this);
 
             for (int j = 0; j < Constants.GRID_SET; j++) {
-                TextView cell = new TextView(new ContextThemeWrapper(this, R.style.SudokuCell));
-                cell.setText("X");
+                CellView cell = new CellView(this, index);
+                cell.setText(puzzle.getCellInformation(index));
+
+                cell.setMinWidth(MAX_WIDTH);
+                cell.setMaxWidth(MAX_WIDTH);
+                cell.setMinHeight(MAX_HEIGHT);
+                cell.setMaxHeight(MAX_HEIGHT);
 
                 row.addView(cell, CELL_PARAMS);
                 cells[index++] = cell;
