@@ -140,7 +140,7 @@ public class SudokuPuzzle {
      * @param index
      * @return
      */
-    public Cell getCellInformation(int index) {
+    public Cell getCellInfo(int index) {
         if (index >= 0 && index < puzzle.length) {
             return puzzle[index].clone();
         }

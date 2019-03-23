@@ -65,8 +65,7 @@ public class PuzzleActivity extends AppCompatActivity {
             TableRow row = new TableRow(this);
 
             for (int j = 0; j < Constants.GRID_SET; j++) {
-                CellView cell = new CellView(this, index);
-                cell.setText(puzzle.getCellInformation(index));
+                CellView cell = new CellView(this, puzzle.getCellInfo(index));
 
                 cell.setMinWidth(MAX_WIDTH);
                 cell.setMaxWidth(MAX_WIDTH);
