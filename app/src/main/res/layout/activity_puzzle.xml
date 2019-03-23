@@ -9,9 +9,10 @@
         tools:context=".PuzzleActivity">
 
     <TableLayout android:id="@+id/puzzle"
-                android:layout_weight="0.9"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"/>
+                 android:layout_weight="0.9"
+                 android:layout_width="match_parent"
+                 android:layout_height="0dp"
+                 android:padding="5dp"/>
 
     <LinearLayout android:layout_weight="0.1"
                   android:layout_width="match_parent"
