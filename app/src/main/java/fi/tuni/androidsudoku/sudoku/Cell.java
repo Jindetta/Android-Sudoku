@@ -173,13 +173,12 @@ public class Cell implements Cloneable {
     public String toString() {
         return String.format(
             java.util.Locale.ENGLISH,
-            "[value: %d, index: %d, column: %d, row: %d, block: %d, neighbours: %d]",
+            "[value: %d, index: %d, column: %d, row: %d, block: %d]",
             getValue(),
             getIndex(),
             getColumn(),
             getRow(),
-            getBlock(),
-            getNeighboursCount()
+            getBlock()
         );
     }
 
