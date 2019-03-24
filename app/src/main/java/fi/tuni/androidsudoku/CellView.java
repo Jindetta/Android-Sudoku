@@ -78,11 +78,11 @@ public class CellView extends AppCompatTextView implements View.OnLongClickListe
         final int   columnIndex = cell.getColumn() + 1;
         final int   rowIndex    = cell.getRow() + 1;
 
-        if (columnIndex % Constants.GRID == 0 && columnIndex < Constants.GRID_SET) {
+        if (columnIndex % Constants.MULTIPLIER == 0 && columnIndex < Constants.GROUP_SIZE) {
             canvas.drawLine(x + w, y, x + w, y + h, paint);
         }
 
-        if (rowIndex % Constants.GRID == 0 && rowIndex < Constants.GRID_SET) {
+        if (rowIndex % Constants.MULTIPLIER == 0 && rowIndex < Constants.GROUP_SIZE) {
             canvas.drawLine(x, y + h, x + w, y + h, paint);
         }
 

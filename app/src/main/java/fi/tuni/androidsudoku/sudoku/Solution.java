@@ -43,7 +43,7 @@ public class Solution {
      *
      */
     public Solution() {
-        solution = new Cell[Constants.GRID_SIZE];
+        solution = new Cell[Constants.PUZZLE_SIZE];
 
         for (int i = 0; i < solution.length; i++) {
             solution[i] = new Cell(i, Constants.EMPTY_CELL_VALUE, true);

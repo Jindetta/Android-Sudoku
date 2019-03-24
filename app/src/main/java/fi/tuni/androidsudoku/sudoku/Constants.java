@@ -8,17 +8,17 @@ public final class Constants {
     /**
      *
      */
-    public static final int GRID = 3;
+    public static final int MULTIPLIER = 3;
 
     /**
      *
      */
-    public static final int GRID_SET = GRID * GRID;
+    public static final int GROUP_SIZE = MULTIPLIER * MULTIPLIER;
 
     /**
      *
      */
-    public static final int GRID_SIZE = GRID_SET * GRID_SET;
+    public static final int PUZZLE_SIZE = GROUP_SIZE * GROUP_SIZE;
 
     /**
      *

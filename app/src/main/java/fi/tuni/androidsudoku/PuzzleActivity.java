@@ -45,7 +45,7 @@ public class PuzzleActivity extends AppCompatActivity {
     private static final TableLayout.LayoutParams ROW_PARAMS = new TableLayout.LayoutParams(
         TableLayout.LayoutParams.MATCH_PARENT,
         TableLayout.LayoutParams.WRAP_CONTENT,
-        1f / Constants.GRID_SET
+        1f / Constants.GROUP_SIZE
     );
 
     /**
@@ -54,7 +54,7 @@ public class PuzzleActivity extends AppCompatActivity {
     private static final TableRow.LayoutParams CELL_PARAMS = new TableRow.LayoutParams(
         TableRow.LayoutParams.WRAP_CONTENT,
         TableRow.LayoutParams.MATCH_PARENT,
-        1f / Constants.GRID_SET
+        1f / Constants.GROUP_SIZE
     );
 
     @Override
@@ -62,7 +62,7 @@ public class PuzzleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_puzzle);
 
-        cells = new CellView[Constants.GRID_SIZE];
+        cells = new CellView[Constants.PUZZLE_SIZE];
         puzzle = new SudokuPuzzle(SudokuPuzzle.Difficulty.VERY_HARD);
         timer = findViewById(R.id.timer);
 
@@ -80,15 +80,15 @@ public class PuzzleActivity extends AppCompatActivity {
         super.onPostCreate(savedInstanceState);
         TableLayout layout = findViewById(R.id.puzzle);
 
-        final int MAX_WIDTH = layout.getWidth() / Constants.GRID_SET;
-        final int MAX_HEIGHT = layout.getHeight() / Constants.GRID_SET;
+        final int MAX_WIDTH = layout.getWidth() / Constants.GROUP_SIZE;
+        final int MAX_HEIGHT = layout.getHeight() / Constants.GROUP_SIZE;
 
         int index = 0;
 
-        for (int i = 0; i < Constants.GRID_SET; i++) {
+        for (int i = 0; i < Constants.GROUP_SIZE; i++) {
             TableRow row = new TableRow(this);
 
-            for (int j = 0; j < Constants.GRID_SET; j++) {
+            for (int j = 0; j < Constants.GROUP_SIZE; j++) {
                 CellView cell = new CellView(this, puzzle.getCellInfo(index));
 
                 cell.setMinWidth(MAX_WIDTH);

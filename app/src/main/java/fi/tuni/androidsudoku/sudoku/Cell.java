@@ -132,7 +132,7 @@ public class Cell implements Cloneable {
      * @param index
      */
     private void setIndex(int index) {
-        if (index < 0 || index >= Constants.GRID_SIZE) {
+        if (index < 0 || index >= Constants.PUZZLE_SIZE) {
             throw new IllegalArgumentException("Cell index cannot be out-of-bounds.");
         }
 
@@ -218,8 +218,8 @@ public class Cell implements Cloneable {
      * @return
      */
     public int getBlock() {
-        int row = index / (Constants.GRID_SET * Constants.GRID);
-        return row * Constants.GRID + index / Constants.GRID % Constants.GRID;
+        int row = index / (Constants.GROUP_SIZE * Constants.MULTIPLIER);
+        return row * Constants.MULTIPLIER + index / Constants.MULTIPLIER % Constants.MULTIPLIER;
     }
 
     /**
@@ -227,7 +227,7 @@ public class Cell implements Cloneable {
      * @return
      */
     public int getColumn() {
-        return index % Constants.GRID_SET;
+        return index % Constants.GROUP_SIZE;
     }
 
     /**
@@ -235,7 +235,7 @@ public class Cell implements Cloneable {
      * @return
      */
     public int getRow() {
-        return index / Constants.GRID_SET;
+        return index / Constants.GROUP_SIZE;
     }
 
     /**
