@@ -1,6 +1,11 @@
 package fi.tuni.androidsudoku;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,6 +32,16 @@ public class PuzzleActivity extends AppCompatActivity {
     /**
      *
      */
+    private TextView timer;
+
+    /**
+     *
+     */
+    private TimerEventReceiver timeEventListener;
+
+    /**
+     *
+     */
     private static final TableLayout.LayoutParams ROW_PARAMS = new TableLayout.LayoutParams(
         TableLayout.LayoutParams.MATCH_PARENT,
         TableLayout.LayoutParams.WRAP_CONTENT,
@@ -48,7 +63,16 @@ public class PuzzleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_puzzle);
 
         cells = new CellView[Constants.GRID_SIZE];
-        puzzle = new SudokuPuzzle(SudokuPuzzle.Difficulty.EASY);
+        puzzle = new SudokuPuzzle(SudokuPuzzle.Difficulty.VERY_HARD);
+        timer = findViewById(R.id.timer);
+
+        timeEventListener = new TimerEventReceiver();
+        LocalBroadcastManager manager = LocalBroadcastManager.getInstance(this);
+        manager.registerReceiver(timeEventListener, new IntentFilter(TimerService.TIMER_EVENT));
+
+        Intent timerService = new Intent(this, TimerService.class);
+        timerService.putExtra("started", System.currentTimeMillis());
+        startService(timerService);
     }
 
     @Override
@@ -80,6 +104,15 @@ public class PuzzleActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        stopService(new Intent(this, TimerService.class));
+        LocalBroadcastManager manager = LocalBroadcastManager.getInstance(this);
+        manager.unregisterReceiver(timeEventListener);
+
+        super.onDestroy();
+    }
+
     /**
      *
      * @param view
@@ -89,5 +122,22 @@ public class PuzzleActivity extends AppCompatActivity {
 
         int randomValue = (int) (Math.random() * 9) + 1;
         cellView.setText(String.valueOf(randomValue));
+    }
+
+    /**
+     *
+     */
+    private class TimerEventReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent != null && TimerService.TIMER_EVENT == intent.getAction()) {
+                long minutes = intent.getLongExtra("minutes", 0);
+                long seconds = intent.getLongExtra("seconds", 0);
+                long millis = intent.getLongExtra("millis", 0);
+
+                timer.setText(getString(R.string.timer, minutes, seconds, millis));
+            }
+        }
     }
 }
