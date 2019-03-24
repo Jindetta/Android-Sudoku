@@ -4,6 +4,7 @@ import android.graphics.*;
 import android.content.Context;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.ContextThemeWrapper;
+import android.view.View;
 
 import fi.tuni.androidsudoku.sudoku.Cell;
 import fi.tuni.androidsudoku.sudoku.Constants;
@@ -11,7 +12,7 @@ import fi.tuni.androidsudoku.sudoku.Constants;
 /**
  *
  */
-public class CellView extends AppCompatTextView {
+public class CellView extends AppCompatTextView implements View.OnLongClickListener {
 
     /**
      *
@@ -45,22 +46,24 @@ public class CellView extends AppCompatTextView {
         }
 
         this.cell = cell;
-        updateCell();
+        updateCell(false);
     }
 
     /**
      *
      */
-    public void updateCell() {
+    public void updateCell(boolean ignoreStyle) {
         if (cell != null) {
             setText(getCellValue(cell));
 
-            final boolean enabled = !cell.isLocked();
-            final int colorId = enabled ? R.color.cellDefaultFont : R.color.cellLockedFont;
+            if (!ignoreStyle) {
+                final boolean enabled = !cell.isLocked();
+                final int colorId = enabled ? R.color.cellDefaultFont : R.color.cellLockedFont;
 
-            setTextColor(getResources().getColor(colorId, null));
-            setFocusable(enabled);
-            setEnabled(enabled);
+                setTextColor(getResources().getColor(colorId, null));
+                setFocusable(enabled);
+                setEnabled(enabled);
+            }
         }
     }
 
@@ -83,6 +86,18 @@ public class CellView extends AppCompatTextView {
         }
 
         super.onDraw(canvas);
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        if (cell != null) {
+            cell.setEmpty();
+            updateCell(true);
+
+            return true;
+        }
+
+        return false;
     }
 
     /**
