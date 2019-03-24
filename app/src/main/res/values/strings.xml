@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Android Sudoku</string>
 
+    <string name="timer">%02d:%02d.%02d</string>
+
     <string name="start">Start game</string>
     <string name="scoreboards">Scoreboards</string>
     <string name="settings">Settings</string>
