@@ -19,9 +19,11 @@
                   android:layout_height="0dp">
 
         <TextView android:id="@+id/timer"
-                  android:layout_gravity="center"
+                  android:textSize="40sp"
+                  android:gravity="center"
+                  android:textColor="#1F1FC1F"
                   android:layout_height="match_parent"
-                  android:layout_width="wrap_content"/>
+                  android:layout_width="match_parent"/>
 
     </LinearLayout>
 
