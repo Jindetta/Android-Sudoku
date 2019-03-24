@@ -7,28 +7,47 @@
               android:orientation="vertical"
               tools:context=".MainActivity">
 
-    <Button android:id="@+id/start"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:text="@string/start"
-            android:onClick="clickHandler"/>
+    <ImageSwitcher android:id="@+id/slideshow"
+                   android:layout_weight="0.6"
+                   android:layout_width="match_parent"
+                   android:layout_height="0dp">
 
-    <Button android:id="@+id/scoreboard"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:text="@string/scoreboards"
-            android:onClick="clickHandler"/>
+        <ImageView android:id="@+id/image"
+                   android:src="@mipmap/ic_launcher"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"/>
 
-    <Button android:id="@+id/settings"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:text="@string/settings"
-            android:onClick="clickHandler"/>
+    </ImageSwitcher>
 
-    <Button android:id="@+id/exit"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:text="@string/exit"
-            android:onClick="clickHandler"/>
+    <LinearLayout android:layout_weight="0.4"
+                  android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="0dp">
+
+        <Button android:id="@+id/start"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="@string/start"
+                android:onClick="clickHandler"/>
+
+        <Button android:id="@+id/scoreboard"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="@string/scoreboards"
+                android:onClick="clickHandler"/>
+
+        <Button android:id="@+id/settings"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="@string/settings"
+                android:onClick="clickHandler"/>
+
+        <Button android:id="@+id/exit"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="@string/exit"
+                android:onClick="clickHandler"/>
+
+    </LinearLayout>
 
 </LinearLayout>
