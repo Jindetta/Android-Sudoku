@@ -46,6 +46,7 @@ public class CellView extends AppCompatTextView implements View.OnLongClickListe
         }
 
         this.cell = cell;
+        setOnLongClickListener(this);
         updateCell(false);
     }
 
