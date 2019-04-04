@@ -10,14 +10,46 @@
         tools:context=".PuzzleActivity">
 
     <TableLayout android:id="@+id/puzzle"
+                 style="@style/SudokuGrid"
                  android:layout_weight="0.75"
                  android:layout_width="match_parent"
-                 android:layout_height="0dp"
-                 style="@style/SudokuGrid"/>
+                 android:layout_height="0dp"/>
 
-    <LinearLayout android:layout_weight="0.25"
+    <LinearLayout android:gravity="bottom"
+                  android:layout_weight="0.25"
                   android:layout_width="match_parent"
                   android:layout_height="0dp">
+
+        <Button android:id="@+id/nr_1"
+                android:text="@string/set_1"
+                style="@style/SudokuSelector"/>
+        <Button android:id="@+id/nr_2"
+                android:text="@string/set_2"
+                style="@style/SudokuSelector"/>
+        <Button android:id="@+id/nr_3"
+                android:text="@string/set_3"
+                style="@style/SudokuSelector"/>
+        <Button android:id="@+id/nr_4"
+                android:text="@string/set_4"
+                style="@style/SudokuSelector"/>
+        <Button android:id="@+id/nr_5"
+                android:text="@string/set_5"
+                style="@style/SudokuSelector"/>
+        <Button android:id="@+id/nr_6"
+                android:text="@string/set_6"
+                style="@style/SudokuSelector"/>
+        <Button android:id="@+id/nr_7"
+                android:text="@string/set_7"
+                style="@style/SudokuSelector"/>
+        <Button android:id="@+id/nr_8"
+                android:text="@string/set_8"
+                style="@style/SudokuSelector"/>
+        <Button android:id="@+id/nr_9"
+                android:text="@string/set_9"
+                style="@style/SudokuSelector"/>
+        <Button android:id="@+id/nr_0"
+                android:text="@string/clear"
+                style="@style/SudokuSelector"/>
 
     </LinearLayout>
 
