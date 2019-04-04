@@ -65,6 +65,23 @@ public class Cell implements Cloneable {
 
     /**
      *
+     * @param index
+     * @return
+     */
+    public boolean isNeighbour(int index) {
+        if (neighbours != null) {
+            for (Cell cell : neighbours) {
+                if (cell.getIndex() == index) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     *
      * @param cell
      * @return
      */
