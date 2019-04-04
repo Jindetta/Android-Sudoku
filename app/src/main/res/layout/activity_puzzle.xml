@@ -10,21 +10,14 @@
         tools:context=".PuzzleActivity">
 
     <TableLayout android:id="@+id/puzzle"
-                 android:layout_weight="0.9"
+                 android:layout_weight="0.75"
                  android:layout_width="match_parent"
                  android:layout_height="0dp"
-                 android:padding="5dp"/>
+                 style="@style/SudokuGrid"/>
 
-    <LinearLayout android:layout_weight="0.1"
+    <LinearLayout android:layout_weight="0.25"
                   android:layout_width="match_parent"
                   android:layout_height="0dp">
-
-        <TextView android:id="@+id/timer"
-                  android:textSize="40sp"
-                  android:gravity="center"
-                  android:textColor="#1F1F1F"
-                  android:layout_height="match_parent"
-                  android:layout_width="match_parent"/>
 
     </LinearLayout>
 

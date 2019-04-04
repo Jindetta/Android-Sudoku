@@ -7,6 +7,13 @@
     </style>
 
     <!-- Custom styles -->
+    <style name="SudokuGrid">
+        <item name="android:paddingTop">1dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:paddingRight">1dp</item>
+        <item name="android:paddingLeft">1dp</item>
+    </style>
+
     <style name="SudokuCell" parent="android:Widget.TextView">
         <item name="android:textColor">@color/cellDefaultFont</item>
         <item name="android:textSize">@dimen/cellTextSize</item>
