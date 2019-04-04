@@ -123,8 +123,7 @@ public class CellView extends AppCompatTextView implements View.OnLongClickListe
     @Override
     public boolean onLongClick(View v) {
         if (cell != null) {
-            cell.setEmpty();
-            updateCell(true);
+            setCellValue(Constants.EMPTY_CELL_VALUE);
 
             return true;
         }
