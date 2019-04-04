@@ -176,7 +176,7 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
      */
     @Override
     public void onFocusChange(View view, boolean hasFocus) {
-        if (hasFocus) {
+        if (hasFocus && view instanceof CellView) {
             currentSelection = (CellView) view;
 
             for (CellView cell : cells) {
