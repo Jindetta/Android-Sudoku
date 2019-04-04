@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
 
@@ -28,11 +29,6 @@ public class PuzzleActivity extends AppCompatActivity {
      *
      */
     private SudokuPuzzle puzzle;
-
-    /**
-     *
-     */
-    private TextView timer;
 
     /**
      *
@@ -64,15 +60,14 @@ public class PuzzleActivity extends AppCompatActivity {
 
         cells = new CellView[Constants.PUZZLE_SIZE];
         puzzle = new SudokuPuzzle(SudokuPuzzle.Difficulty.VERY_HARD);
-        timer = findViewById(R.id.timer);
 
         timeEventListener = new TimerEventReceiver();
+        Intent timer = new Intent(this, TimerService.class);
         LocalBroadcastManager manager = LocalBroadcastManager.getInstance(this);
         manager.registerReceiver(timeEventListener, new IntentFilter(TimerService.TIMER_EVENT));
 
-        Intent timerService = new Intent(this, TimerService.class);
-        timerService.putExtra("started", System.currentTimeMillis());
-        startService(timerService);
+        stopService(timer);
+        startService(timer);
     }
 
     @Override
@@ -106,7 +101,6 @@ public class PuzzleActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        stopService(new Intent(this, TimerService.class));
         LocalBroadcastManager manager = LocalBroadcastManager.getInstance(this);
         manager.unregisterReceiver(timeEventListener);
 
@@ -136,7 +130,7 @@ public class PuzzleActivity extends AppCompatActivity {
                 long seconds = intent.getLongExtra("seconds", 0);
                 long millis = intent.getLongExtra("millis", 0);
 
-                timer.setText(getString(R.string.timer, minutes, seconds, millis));
+                setTitle(getString(R.string.timer, minutes, seconds, millis));
             }
         }
     }
