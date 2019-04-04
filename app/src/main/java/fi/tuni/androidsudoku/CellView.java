@@ -68,6 +68,37 @@ public class CellView extends AppCompatTextView implements View.OnLongClickListe
         }
     }
 
+    /**
+     *
+     * @param view
+     * @return
+     */
+    public boolean isNeighbour(CellView view) {
+        return cell != null && cell.isNeighbour(view.getCellIndex());
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getCellIndex() {
+        return cell != null ? cell.getIndex() : -1;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public void setCellValue(int value) {
+        if (value != Constants.EMPTY_CELL_VALUE) {
+            cell.setValue(value);
+        } else {
+            cell.setEmpty();
+        }
+
+        updateCell(true);
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         final float x = getTranslationX();
