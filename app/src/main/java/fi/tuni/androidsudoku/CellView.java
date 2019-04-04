@@ -91,7 +91,7 @@ public class CellView extends AppCompatTextView implements View.OnLongClickListe
      */
     public void setCellValue(int value) {
         if (value != Constants.EMPTY_CELL_VALUE) {
-            cell.setValue(value);
+            cell.forceValue(value);
         } else {
             cell.setEmpty();
         }
