@@ -18,12 +18,12 @@ public class TimerService extends Service {
     /**
      *
      */
-    private long startTimestamp;
+    private volatile long startTimestamp;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent != null) {
-            startTimestamp = intent.getLongExtra("started", 0);
+            startTimestamp = System.currentTimeMillis();
 
             new Thread(this::updateEvent).start();
             return START_STICKY;
@@ -34,7 +34,7 @@ public class TimerService extends Service {
 
     @Override
     public void onDestroy() {
-        startTimestamp = 0;
+        startTimestamp = -1;
         super.onDestroy();
     }
 
@@ -50,7 +50,7 @@ public class TimerService extends Service {
         Intent event = new Intent(TIMER_EVENT);
         LocalBroadcastManager manager = LocalBroadcastManager.getInstance(this);
 
-        while (startTimestamp != 0) {
+        while (startTimestamp > 0) {
             long time = System.currentTimeMillis() - startTimestamp;
 
             event.putExtra("minutes", time / 1000 / 60);
