@@ -3,6 +3,17 @@
 
     <string name="timer">%02d:%02d.%02d</string>
 
+    <string name="set_1">1</string>
+    <string name="set_2">2</string>
+    <string name="set_3">3</string>
+    <string name="set_4">4</string>
+    <string name="set_5">5</string>
+    <string name="set_6">6</string>
+    <string name="set_7">7</string>
+    <string name="set_8">8</string>
+    <string name="set_9">9</string>
+    <string name="clear">C</string>
+
     <string name="start">Start game</string>
     <string name="scoreboards">Scoreboards</string>
     <string name="settings">Settings</string>
