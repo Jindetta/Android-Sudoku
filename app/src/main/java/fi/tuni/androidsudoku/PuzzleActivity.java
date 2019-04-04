@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.*;
 
@@ -18,7 +17,7 @@ import fi.tuni.androidsudoku.sudoku.SudokuPuzzle;
 /**
  *
  */
-public class PuzzleActivity extends AppCompatActivity {
+public class PuzzleActivity extends AppCompatActivity implements View.OnFocusChangeListener {
 
     /**
      *
@@ -29,6 +28,11 @@ public class PuzzleActivity extends AppCompatActivity {
      *
      */
     private SudokuPuzzle puzzle;
+
+    /**
+     *
+     */
+    private CellView currentSelection;
 
     /**
      *
@@ -90,13 +94,20 @@ public class PuzzleActivity extends AppCompatActivity {
                 cell.setMaxWidth(MAX_WIDTH);
                 cell.setMinHeight(MAX_HEIGHT);
                 cell.setMaxHeight(MAX_HEIGHT);
+                cell.setOnFocusChangeListener(this);
 
                 row.addView(cell, CELL_PARAMS);
                 cells[index++] = cell;
+
+                if (currentSelection == null && cell.isFocusable()) {
+                    currentSelection = cell;
+                }
             }
 
             layout.addView(row, ROW_PARAMS);
         }
+
+        currentSelection.requestFocus();
     }
 
     @Override
@@ -111,11 +122,71 @@ public class PuzzleActivity extends AppCompatActivity {
      *
      * @param view
      */
-    public void cellClicked(View view) {
-        CellView cellView = (CellView) view;
+    public void updateCellValue(View view) {
+        if (currentSelection != null) {
+            int value = Constants.EMPTY_CELL_VALUE;
 
-        int randomValue = (int) (Math.random() * 9) + 1;
-        cellView.setText(String.valueOf(randomValue));
+            switch (view.getId()) {
+                case R.id.nr_1: {
+                    value = 1;
+                    break;
+                }
+                case R.id.nr_2: {
+                    value = 2;
+                    break;
+                }
+                case R.id.nr_3: {
+                    value = 3;
+                    break;
+                }
+                case R.id.nr_4: {
+                    value = 4;
+                    break;
+                }
+                case R.id.nr_5: {
+                    value = 5;
+                    break;
+                }
+                case R.id.nr_6: {
+                    value = 6;
+                    break;
+                }
+                case R.id.nr_7: {
+                    value = 7;
+                    break;
+                }
+                case R.id.nr_8: {
+                    value = 8;
+                    break;
+                }
+                case R.id.nr_9: {
+                    value = 9;
+                    break;
+                }
+            }
+
+            currentSelection.setCellValue(value);
+        }
+    }
+
+    /**
+     *
+     * @param view
+     * @param hasFocus
+     */
+    @Override
+    public void onFocusChange(View view, boolean hasFocus) {
+        if (hasFocus) {
+            currentSelection = (CellView) view;
+
+            for (CellView cell : cells) {
+                if (cell.isFocusable()) {
+                    cell.setActivated(currentSelection.isNeighbour(cell));
+                }
+
+                cell.setHovered(cell == currentSelection);
+            }
+        }
     }
 
     /**
