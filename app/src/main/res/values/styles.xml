@@ -19,8 +19,14 @@
         <item name="android:textSize">@dimen/cellTextSize</item>
         <item name="android:background">@drawable/cell</item>
         <item name="android:focusableInTouchMode">true</item>
-        <item name="android:onClick">cellClicked</item>
+        <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
         <item name="android:gravity">center</item>
+    </style>
+
+    <style name="SudokuSelector" parent="android:Widget.Button">
+        <item name="android:layout_weight">0.1</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
     </style>
 </resources>
