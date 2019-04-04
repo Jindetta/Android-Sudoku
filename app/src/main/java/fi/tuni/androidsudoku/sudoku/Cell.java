@@ -201,6 +201,14 @@ public class Cell implements Cloneable {
 
     /**
      *
+     * @param value
+     */
+    public void forceValue(int value) {
+        this.value = value;
+    }
+
+    /**
+     *
      * @return
      */
     public boolean isLocked() {
