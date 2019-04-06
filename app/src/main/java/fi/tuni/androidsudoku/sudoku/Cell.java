@@ -1,6 +1,7 @@
 package fi.tuni.androidsudoku.sudoku;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -25,7 +26,7 @@ public class Cell implements Cloneable {
     /**
      *
      */
-    private Set<Cell> neighbours;
+    private List<Cell> neighbours;
 
     /**
      *
@@ -51,7 +52,7 @@ public class Cell implements Cloneable {
      * @param puzzle
      */
     public void setupNeighbours(Cell[] puzzle) {
-        neighbours = new HashSet<>();
+        neighbours = new ArrayList<>(20);
 
         for (Cell cell : puzzle) {
             if (cell.getIndex() != getIndex()) {
@@ -115,9 +116,10 @@ public class Cell implements Cloneable {
      * @return
      */
     public List<Integer> getValidValues() {
-        List<Integer> results = new ArrayList<>();
+        final int[] values = Constants.ALLOWED_VALUES;
+        List<Integer> results = new ArrayList<>(values.length);
 
-        for (int value : Constants.ALLOWED_VALUES) {
+        for (int value : values) {
             if (isValidCellValue(value)) {
                 results.add(value);
             }
