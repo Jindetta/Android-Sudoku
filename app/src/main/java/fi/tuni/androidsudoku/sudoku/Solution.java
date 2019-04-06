@@ -1,7 +1,6 @@
 package fi.tuni.androidsudoku.sudoku;
 
 import java.util.List;
-import java.util.Random;
 
 /**
  *
@@ -17,24 +16,17 @@ public class Solution {
      *
      */
     private void generateSolution() {
-        Random randomNumber = new Random();
         int currentIndex = 0;
 
         while (currentIndex < solution.length) {
             Cell currentCell = solution[currentIndex];
             List<Integer> values = currentCell.getValidValues();
 
-            if (values.isEmpty()) {
+            if (values.isEmpty() || !currentCell.setRandomValue(values)) {
+                currentCell.setEmpty();
                 currentIndex--;
             } else {
-                int value = getRandomValue(values, randomNumber);
-
-                if (currentCell.setValue(value)) {
-                    currentIndex++;
-                } else {
-                    currentCell.setEmpty();
-                    currentIndex--;
-                }
+                currentIndex++;
             }
         }
     }
@@ -89,16 +81,6 @@ public class Solution {
         }
 
         return builder.toString();
-    }
-
-    /**
-     *
-     * @param values
-     * @param randomGenerator
-     * @return
-     */
-    private static int getRandomValue(List<Integer> values, Random randomGenerator) {
-        return values.get(randomGenerator.nextInt(values.size()));
     }
 
     /**
