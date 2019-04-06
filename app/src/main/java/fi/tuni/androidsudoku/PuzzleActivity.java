@@ -184,7 +184,7 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
                     cell.setActivated(currentSelection.isNeighbour(cell));
                 }
 
-                cell.setHovered(cell == currentSelection);
+                cell.setSelected(cell == currentSelection);
             }
         }
     }
