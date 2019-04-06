@@ -77,7 +77,7 @@ public class SudokuPuzzle {
                 int value = randomCell.getValue();
                 randomCell.setEmpty();
 
-                if (isUniquePuzzle()) {
+                if (randomCell.hasSingleValidValue() || isUniquePuzzle()) {
                     randomCell.setLocked(false);
                     cellsLeft--;
                 } else {
@@ -128,6 +128,20 @@ public class SudokuPuzzle {
     private boolean verifyPuzzle(Cell[] puzzle) {
         for (int i = 0; i < puzzle.length; i++) {
             if (puzzle[i].getValue() != solution.get(i).getValue()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean puzzleIsComplete() {
+        for (Cell cell : puzzle) {
+            if (cell.isEmpty() || !cell.hasSingleValidValue()) {
                 return false;
             }
         }
