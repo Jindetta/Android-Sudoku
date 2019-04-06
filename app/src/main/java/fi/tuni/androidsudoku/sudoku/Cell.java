@@ -132,10 +132,16 @@ public class Cell implements Cloneable {
      *
      * @return
      */
-    public int getValidValuesCount() {
-        List<Integer> values = getValidValues();
+    public boolean hasSingleValidValue() {
+        int validValues = 0;
 
-        return values.size();
+        for (int value : Constants.ALLOWED_VALUES) {
+            if (isValidCellValue(value) && ++validValues != 1) {
+                break;
+            }
+        }
+
+        return validValues == 1;
     }
 
     /**
@@ -199,6 +205,17 @@ public class Cell implements Cloneable {
         }
 
         return false;
+    }
+
+    /**
+     *
+     * @param values
+     * @return
+     */
+    public boolean setRandomValue(List<Integer> values) {
+        int randomIndex = (int) (Math.random() * values.size());
+
+        return setValue(values.get(randomIndex));
     }
 
     /**
