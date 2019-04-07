@@ -21,9 +21,18 @@ public class SudokuPuzzle {
      *
      */
     public SudokuPuzzle(Difficulty difficulty) {
-        solution = new Solution();
-        puzzle = solution.copySolution();
+        this(new Solution(), difficulty);
+    }
 
+    /**
+     *
+     * @param solution
+     * @param difficulty
+     */
+    public SudokuPuzzle(Solution solution, Difficulty difficulty) {
+        this.solution = solution;
+
+        puzzle = solution.copySolution();
         generatePuzzle(difficulty);
     }
 
@@ -161,10 +170,10 @@ public class SudokuPuzzle {
 
     public enum Difficulty {
         NONE        (81),
-        EASY        (46),
-        MEDIUM      (42),
-        HARD        (38),
-        VERY_HARD   (32);
+        EASY        (44),
+        MEDIUM      (39),
+        HARD        (36),
+        VERY_HARD   (27);
 
         private int cluesCount;
 
