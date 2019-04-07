@@ -195,7 +195,7 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
 
             for (CellView cell : cells) {
                 if (cell.isFocusable()) {
-                    cell.setActivated(currentSelection.isNeighbour(cell));
+                    cell.setActivated(currentSelection.shouldActivate(cell));
                 }
 
                 cell.setSelected(cell == currentSelection);

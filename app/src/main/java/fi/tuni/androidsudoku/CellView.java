@@ -70,16 +70,8 @@ public class CellView extends AppCompatTextView {
      * @param view
      * @return
      */
-    public boolean isNeighbour(CellView view) {
-        return cell != null && cell.isNeighbour(view.getCellIndex());
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getCellIndex() {
-        return cell != null ? cell.getIndex() : -1;
+    public boolean shouldActivate(CellView view) {
+        return cell != null && cell.isNeighbourCell(view.cell);
     }
 
     /**
