@@ -72,6 +72,20 @@ public class Solution {
      *
      * @return
      */
+    public int[] getSolutionValues() {
+        int[] result = new int[solution.length];
+
+        for (int i = 0; i < result.length; i++) {
+            result[i] = solution[i].getValue();
+        }
+
+        return result;
+    }
+
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
