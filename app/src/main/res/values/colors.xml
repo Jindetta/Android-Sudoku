@@ -13,7 +13,7 @@
     <color name="cellDefaultBackground">#FFFFFF</color>
 
     <color name="cellBorderHighlight">#000000</color>
-    <color name="cellBorder">#1C1C1C</color>
+    <color name="cellBorder">#272727</color>
 
     <color name="cellActivated">#F0FFFF</color>
     <color name="cellFocused">#FFFFCC</color>

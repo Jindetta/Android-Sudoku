@@ -11,12 +11,12 @@
 
     <TableLayout android:id="@+id/puzzle"
                  style="@style/SudokuGrid"
-                 android:layout_weight="0.75"
+                 android:layout_weight="0.8"
                  android:layout_width="match_parent"
                  android:layout_height="0dp"/>
 
     <LinearLayout android:gravity="bottom"
-                  android:layout_weight="0.25"
+                  android:layout_weight="0.2"
                   android:layout_width="match_parent"
                   android:layout_height="0dp">
 
