@@ -77,8 +77,8 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
 
         final int MAX_WIDTH = grid.getMeasuredWidth() / Constants.GROUP_SIZE;
         final int MAX_HEIGHT = grid.getMeasuredHeight() / Constants.GROUP_SIZE;
