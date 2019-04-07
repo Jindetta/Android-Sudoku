@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="cellBorder">1px</dimen>
-    <dimen name="cellBorderThick">5dp</dimen>
+    <dimen name="cellBorderThick">4dp</dimen>
     <dimen name="setNumberTextSize">16sp</dimen>
     <dimen name="cellNoteTextSize">4sp</dimen>
     <dimen name="cellTextSize">10sp</dimen>
