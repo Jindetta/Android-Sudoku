@@ -15,6 +15,6 @@
     <color name="cellBorderHighlight">#000000</color>
     <color name="cellBorder">#1C1C1C</color>
 
-    <color name="cellActivated">#E7FFE7</color>
+    <color name="cellActivated">#F0FFFF</color>
     <color name="cellFocused">#FFFFCC</color>
 </resources>
