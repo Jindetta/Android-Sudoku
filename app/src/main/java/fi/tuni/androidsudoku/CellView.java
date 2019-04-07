@@ -12,7 +12,7 @@ import fi.tuni.androidsudoku.sudoku.Constants;
 /**
  *
  */
-public class CellView extends AppCompatTextView implements View.OnLongClickListener {
+public class CellView extends AppCompatTextView {
 
     /**
      *

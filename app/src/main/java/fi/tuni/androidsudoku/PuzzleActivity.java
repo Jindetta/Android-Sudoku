@@ -17,7 +17,8 @@ import fi.tuni.androidsudoku.sudoku.SudokuPuzzle;
 /**
  *
  */
-public class PuzzleActivity extends AppCompatActivity implements View.OnFocusChangeListener {
+public class PuzzleActivity extends AppCompatActivity implements View.OnFocusChangeListener,
+                                                                 View.OnLongClickListener {
 
     /**
      *
@@ -94,6 +95,8 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
                 cell.setMaxWidth(MAX_WIDTH);
                 cell.setMinHeight(MAX_HEIGHT);
                 cell.setMaxHeight(MAX_HEIGHT);
+
+                cell.setOnLongClickListener(this);
                 cell.setOnFocusChangeListener(this);
 
                 row.addView(cell, CELL_PARAMS);
@@ -167,6 +170,17 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
 
             currentSelection.setCellValue(value);
         }
+    }
+
+    /**
+     *
+     * @param view
+     * @return
+     */
+    @Override
+    public boolean onLongClick(View view) {
+        updateCellValue(view);
+        return true;
     }
 
     /**
