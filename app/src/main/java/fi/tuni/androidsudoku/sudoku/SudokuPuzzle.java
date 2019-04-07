@@ -27,42 +27,16 @@ public class SudokuPuzzle {
         generatePuzzle(difficulty);
     }
 
-    /**
-     *
-     * @return
-     */
-    private List<Integer> getAvailableCells(int candidates) {
-        List<Integer> results = new ArrayList<>();
+    private List<Cell> getListOfEmptyCells(Cell[] puzzle) {
+        List<Cell> results = new ArrayList<>();
 
         for (Cell cell : puzzle) {
-            if (!cell.isEmpty() && cell.getValidValuesCount() <= candidates) {
-                results.add(cell.getIndex());
+            if (cell.isEmpty()) {
+                results.add(cell);
             }
         }
 
         return results;
-    }
-
-    private int getValueCount(int value) {
-        int totalIndexes = 0;
-
-        for (Cell cell : puzzle) {
-            if (cell.getValue() == value) {
-                totalIndexes++;
-            }
-        }
-
-        return totalIndexes;
-    }
-
-    private Cell getNextEmptyCell(Cell[] puzzle) {
-        for (Cell cell : puzzle) {
-            if (cell.isEmpty()) {
-                return cell;
-            }
-        }
-
-        return null;
     }
 
     private void generatePuzzle(Difficulty difficulty) {
@@ -107,18 +81,17 @@ public class SudokuPuzzle {
      */
     private boolean isUniquePuzzle() {
         Cell[] puzzle = copyPuzzle();
-        Cell cell = getNextEmptyCell(puzzle);
-        Stack<Cell> stack = new Stack<>();
+        List<Cell> cells = getListOfEmptyCells(puzzle);
+        int currentIndex = 0;
 
-        while (cell != null) {
-            if (cell.setNextValue()) {
-                stack.push(cell);
+        while (currentIndex < cells.size()) {
+            Cell cell = cells.get(currentIndex);
 
-                cell = getNextEmptyCell(puzzle);
-            } else if (!stack.isEmpty()) {
+            if (!cell.setNextValue()) {
                 cell.setEmpty();
-
-                cell = stack.pop();
+                currentIndex--;
+            } else {
+                currentIndex++;
             }
         }
 
