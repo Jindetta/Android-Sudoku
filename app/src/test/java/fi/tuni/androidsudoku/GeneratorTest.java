@@ -13,12 +13,12 @@ public class GeneratorTest {
         Solution solution = new Solution();
         float solutionTime = (System.currentTimeMillis() - startTime) / 1000f;
 
-        System.out.printf("Generated solution in: %.3fs%nSolution: %s%n", solutionTime, solution);
+        System.out.printf("Generated solution\t(%.3fs): %s%n", solutionTime, solution);
 
         startTime = System.currentTimeMillis();
         SudokuPuzzle puzzle = new SudokuPuzzle(solution, SudokuPuzzle.Difficulty.VERY_HARD);
         float puzzleTime = (System.currentTimeMillis() - startTime) / 1000f;
 
-        System.out.printf("Generated puzzle in: %.3fs%nPuzzle: %s%n", puzzleTime, puzzle);
+        System.out.printf("Generated puzzle\t(%.3fs): %s%n", puzzleTime, puzzle);
     }
 }
