@@ -22,6 +22,11 @@ public class CellView extends AppCompatTextView {
     /**
      *
      */
+    private boolean notes;
+
+    /**
+     *
+     */
     private static Paint paint;
 
     /**
@@ -46,6 +51,7 @@ public class CellView extends AppCompatTextView {
         }
 
         this.cell = cell;
+        this.notes = true;
         updateCell();
     }
 
@@ -126,25 +132,5 @@ public class CellView extends AppCompatTextView {
         }
 
         super.onDraw(canvas);
-    }
-
-    @Override
-    public boolean onLongClick(View v) {
-        if (cell != null) {
-            setCellValue(Constants.EMPTY_CELL_VALUE);
-
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     *
-     * @param cell
-     * @return
-     */
-    private static String getCellValue(Cell cell) {
-        return !cell.isEmpty() ? String.valueOf(cell.getValue()) : "";
     }
 }
