@@ -125,10 +125,14 @@ public class CellView extends AppCompatTextView {
 
         if (columnIndex % Constants.MULTIPLIER == 0 && columnIndex < Constants.GROUP_SIZE) {
             canvas.drawLine(x + w, y, x + w, y + h, paint);
+        } else if (columnIndex % Constants.MULTIPLIER == 1 && columnIndex >= Constants.MULTIPLIER) {
+            canvas.drawLine(x, y, x, y + h, paint);
         }
 
         if (rowIndex % Constants.MULTIPLIER == 0 && rowIndex < Constants.GROUP_SIZE) {
             canvas.drawLine(x, y + h, x + w, y + h, paint);
+        } else if (rowIndex % Constants.MULTIPLIER == 1 && rowIndex >= Constants.MULTIPLIER) {
+            canvas.drawLine(x, y, x + w, y, paint);
         }
 
         super.onDraw(canvas);
