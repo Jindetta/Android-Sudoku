@@ -51,11 +51,7 @@ public class TimerService extends Service {
         LocalBroadcastManager manager = LocalBroadcastManager.getInstance(this);
 
         while (startTimestamp > 0) {
-            long time = System.currentTimeMillis() - startTimestamp;
-
-            event.putExtra("minutes", time / 1000 / 60);
-            event.putExtra("seconds", time / 1000 % 60);
-            event.putExtra("millis", time % 1000 / 10);
+            event.putExtra("elapsed", System.currentTimeMillis() - startTimestamp);
             manager.sendBroadcast(event);
 
             try {

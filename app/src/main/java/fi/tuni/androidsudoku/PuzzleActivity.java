@@ -225,11 +225,16 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent != null && TimerService.TIMER_EVENT == intent.getAction()) {
-                long minutes = intent.getLongExtra("minutes", 0);
-                long seconds = intent.getLongExtra("seconds", 0);
-                long millis = intent.getLongExtra("millis", 0);
+                long elapsed = intent.getLongExtra("elapsed", 0);
 
-                setTitle(getString(R.string.timer, minutes, seconds, millis));
+                setTitle(
+                    getString(
+                        R.string.timer,
+                        elapsed / 1000 / 60,
+                        elapsed / 1000 % 60,
+                        elapsed % 1000 / 10
+                    )
+                );
             }
         }
     }
