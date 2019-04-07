@@ -46,25 +46,22 @@ public class CellView extends AppCompatTextView {
         }
 
         this.cell = cell;
-        setOnLongClickListener(this);
-        updateCell(false);
+        updateCell();
     }
 
     /**
      *
      */
-    public void updateCell(boolean ignoreStyle) {
+    private void updateCell() {
         if (cell != null) {
-            setText(getCellValue(cell));
+            updateCellText();
 
-            if (!ignoreStyle) {
-                final boolean enabled = !cell.isLocked();
-                final int colorId = enabled ? R.color.cellDefaultFont : R.color.cellLockedFont;
+            final boolean enabled = !cell.isLocked();
+            final int colorId = enabled ? R.color.cellDefaultFont : R.color.cellLockedFont;
 
-                setTextColor(getResources().getColor(colorId, null));
-                setFocusable(enabled);
-                setEnabled(enabled);
-            }
+            setTextColor(getResources().getColor(colorId, null));
+            setFocusable(enabled);
+            setEnabled(enabled);
         }
     }
 
@@ -96,9 +93,28 @@ public class CellView extends AppCompatTextView {
             cell.setEmpty();
         }
 
-        updateCell(true);
+        updateCellText();
     }
 
+    /**
+     *
+     */
+    public void updateCellText() {
+        if (!cell.isEmpty()) {
+            setTextSize(getResources().getDimension(R.dimen.cellTextSize));
+            setText(String.valueOf(cell.getValue()));
+        } else if (notes) {
+            setTextSize(getResources().getDimension(R.dimen.cellNoteTextSize));
+            setText(cell.getNotes());
+        } else {
+            setText("");
+        }
+    }
+
+    /**
+     *
+     * @param canvas
+     */
     @Override
     protected void onDraw(Canvas canvas) {
         final float x = getTranslationX();

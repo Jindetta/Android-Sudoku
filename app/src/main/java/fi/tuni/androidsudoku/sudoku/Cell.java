@@ -286,6 +286,28 @@ public class Cell implements Cloneable {
      *
      * @return
      */
+    public String getNotes() {
+        StringBuilder notes = new StringBuilder();
+        List<Integer> values = getValidValues();
+        int index = 1;
+
+        for (Integer value : values) {
+            notes.append(value);
+
+            if (index < values.size()) {
+                notes.append(index % Constants.MULTIPLIER == 0 ? "\n" : " ");
+            }
+
+            index++;
+        }
+
+        return notes.toString();
+    }
+
+    /**
+     *
+     * @return
+     */
     @Override
     public Cell clone() {
         try {
