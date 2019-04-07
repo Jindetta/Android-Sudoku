@@ -23,6 +23,11 @@ public final class Constants {
     /**
      *
      */
+    public static final int PUZZLE_VERIFY_VALUE = 511;
+
+    /**
+     *
+     */
     public static final int MIN_CELL_VALUE = 1;
 
     /**
