@@ -58,6 +58,10 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
         0, TableRow.LayoutParams.MATCH_PARENT, 100f / Constants.GROUP_SIZE
     );
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +69,7 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
 
         grid = findViewById(R.id.puzzle);
         cells = new CellView[Constants.PUZZLE_SIZE];
-        puzzle = new SudokuPuzzle(SudokuPuzzle.Difficulty.VERY_HARD);
+        puzzle = new SudokuPuzzle(SudokuPuzzle.Difficulty.HARD);
 
         timeEventListener = new TimerEventReceiver();
         Intent timer = new Intent(this, TimerService.class);
@@ -76,12 +80,13 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
         startService(timer);
     }
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-
-        final int MAX_WIDTH = grid.getMeasuredWidth() / Constants.GROUP_SIZE;
-        final int MAX_HEIGHT = grid.getMeasuredHeight() / Constants.GROUP_SIZE;
 
         int index = 0;
 
@@ -91,10 +96,10 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
             for (int j = 0; j < Constants.GROUP_SIZE; j++) {
                 CellView cell = new CellView(this, puzzle.getCellInfo(index));
 
-                cell.setMinWidth(MAX_WIDTH);
-                cell.setMaxWidth(MAX_WIDTH);
-                cell.setMinHeight(MAX_HEIGHT);
-                cell.setMaxHeight(MAX_HEIGHT);
+                cell.setMinWidth(CELL_PARAMS.width);
+                cell.setMaxWidth(CELL_PARAMS.width);
+                cell.setMinHeight(ROW_PARAMS.height);
+                cell.setMaxHeight(ROW_PARAMS.height);
 
                 cell.setOnLongClickListener(this);
                 cell.setOnFocusChangeListener(this);
@@ -113,6 +118,9 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
         currentSelection.requestFocus();
     }
 
+    /**
+     *
+     */
     @Override
     protected void onDestroy() {
         LocalBroadcastManager manager = LocalBroadcastManager.getInstance(this);
