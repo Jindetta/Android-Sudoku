@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,24 +37,25 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
     /**
      *
      */
+    private TableLayout grid;
+
+    /**
+     *
+     */
     private TimerEventReceiver timeEventListener;
 
     /**
      *
      */
     private static final TableLayout.LayoutParams ROW_PARAMS = new TableLayout.LayoutParams(
-        TableLayout.LayoutParams.MATCH_PARENT,
-        TableLayout.LayoutParams.WRAP_CONTENT,
-        1f / Constants.GROUP_SIZE
+        TableLayout.LayoutParams.MATCH_PARENT, 0, 100f / Constants.GROUP_SIZE
     );
 
     /**
      *
      */
     private static final TableRow.LayoutParams CELL_PARAMS = new TableRow.LayoutParams(
-        TableRow.LayoutParams.WRAP_CONTENT,
-        TableRow.LayoutParams.MATCH_PARENT,
-        1f / Constants.GROUP_SIZE
+        0, TableRow.LayoutParams.MATCH_PARENT, 100f / Constants.GROUP_SIZE
     );
 
     @Override
@@ -63,6 +63,7 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_puzzle);
 
+        grid = findViewById(R.id.puzzle);
         cells = new CellView[Constants.PUZZLE_SIZE];
         puzzle = new SudokuPuzzle(SudokuPuzzle.Difficulty.VERY_HARD);
 
@@ -76,12 +77,11 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
     }
 
     @Override
-    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        TableLayout layout = findViewById(R.id.puzzle);
+    protected void onStart() {
+        super.onStart();
 
-        final int MAX_WIDTH = layout.getWidth() / Constants.GROUP_SIZE;
-        final int MAX_HEIGHT = layout.getHeight() / Constants.GROUP_SIZE;
+        final int MAX_WIDTH = grid.getMeasuredWidth() / Constants.GROUP_SIZE;
+        final int MAX_HEIGHT = grid.getMeasuredHeight() / Constants.GROUP_SIZE;
 
         int index = 0;
 
@@ -107,7 +107,7 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
                 }
             }
 
-            layout.addView(row, ROW_PARAMS);
+            grid.addView(row, ROW_PARAMS);
         }
 
         currentSelection.requestFocus();
@@ -169,6 +169,20 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
             }
 
             currentSelection.setCellValue(value);
+            updateGridStatus();
+        }
+    }
+
+    /**
+     *
+     */
+    private void updateGridStatus() {
+        for (CellView cell : cells) {
+            cell.updateCellText();
+        }
+
+        if (puzzle.puzzleIsComplete()) {
+            stopService(new Intent(this, TimerService.class));
         }
     }
 
