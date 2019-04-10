@@ -9,11 +9,12 @@
         android:keepScreenOn="true"
         tools:context=".PuzzleActivity">
 
-    <TableLayout android:id="@+id/puzzle"
-                 style="@style/SudokuGrid"
-                 android:layout_weight="0.8"
-                 android:layout_width="match_parent"
-                 android:layout_height="0dp"/>
+    <LinearLayout android:id="@+id/puzzle"
+                  style="@style/SudokuGrid"
+                  android:layout_weight="0.8"
+                  android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="0dp"/>
 
     <LinearLayout android:gravity="bottom"
                   android:layout_weight="0.2"

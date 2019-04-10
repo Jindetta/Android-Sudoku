@@ -1,14 +1,14 @@
 package fi.tuni.androidsudoku;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
+import android.view.View;
 import android.content.Intent;
+import android.content.Context;
+import android.widget.LinearLayout;
 import android.content.IntentFilter;
+import android.content.BroadcastReceiver;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.*;
 
 import fi.tuni.androidsudoku.sudoku.Constants;
 import fi.tuni.androidsudoku.sudoku.SudokuPuzzle;
@@ -37,7 +37,7 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
     /**
      *
      */
-    private TableLayout grid;
+    private LinearLayout grid;
 
     /**
      *
@@ -47,15 +47,15 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
     /**
      *
      */
-    private static final TableLayout.LayoutParams ROW_PARAMS = new TableLayout.LayoutParams(
-        TableLayout.LayoutParams.MATCH_PARENT, 0, 100f / Constants.GROUP_SIZE
+    private static final LinearLayout.LayoutParams ROW_PARAMS = new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams.MATCH_PARENT, 0, 100f / Constants.GROUP_SIZE
     );
 
     /**
      *
      */
-    private static final TableRow.LayoutParams CELL_PARAMS = new TableRow.LayoutParams(
-        0, TableRow.LayoutParams.MATCH_PARENT, 100f / Constants.GROUP_SIZE
+    private static final LinearLayout.LayoutParams CELL_PARAMS = new LinearLayout.LayoutParams(
+        0, LinearLayout.LayoutParams.MATCH_PARENT, 100f / Constants.GROUP_SIZE
     );
 
     /**
@@ -91,7 +91,7 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
         int index = 0;
 
         for (int i = 0; i < Constants.GROUP_SIZE; i++) {
-            TableRow row = new TableRow(this);
+            LinearLayout row = new LinearLayout(this);
 
             for (int j = 0; j < Constants.GROUP_SIZE; j++) {
                 CellView cell = new CellView(this, puzzle.getCellInfo(index));
@@ -101,8 +101,8 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
                 cell.setMinHeight(ROW_PARAMS.height);
                 cell.setMaxHeight(ROW_PARAMS.height);
 
-                cell.setOnLongClickListener(this);
                 cell.setOnFocusChangeListener(this);
+                cell.setOnLongClickListener(this);
 
                 row.addView(cell, CELL_PARAMS);
                 cells[index++] = cell;
