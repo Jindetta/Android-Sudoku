@@ -11,7 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import fi.tuni.androidsudoku.sudoku.Constants;
-import fi.tuni.androidsudoku.sudoku.SudokuPuzzle;
+import fi.tuni.androidsudoku.sudoku.Sudoku;
 
 /**
  *
@@ -27,7 +27,7 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
     /**
      *
      */
-    private SudokuPuzzle puzzle;
+    private Sudoku puzzle;
 
     /**
      *
@@ -58,6 +58,10 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
         0, LinearLayout.LayoutParams.MATCH_PARENT, 100f / Constants.GROUP_SIZE
     );
 
+    public PuzzleActivity() {
+        puzzle = new Sudoku();
+    }
+
     /**
      *
      * @param savedInstanceState
@@ -67,9 +71,17 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_puzzle);
 
+        Intent intent = getIntent();
         grid = findViewById(R.id.puzzle);
         cells = new CellView[Constants.PUZZLE_SIZE];
-        puzzle = new SudokuPuzzle(SudokuPuzzle.Difficulty.HARD);
+        puzzle.generateSolution();
+
+        for (Sudoku.Difficulty difficulty : Sudoku.Difficulty.values()) {
+            if (difficulty.name().equals(intent.getStringExtra("difficulty"))) {
+                puzzle.generatePuzzle(difficulty);
+                break;
+            }
+        }
 
         timeEventListener = new TimerEventReceiver();
         Intent timer = new Intent(this, TimerService.class);
