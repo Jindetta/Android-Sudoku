@@ -4,67 +4,71 @@ import android.view.View;
 import android.content.Intent;
 import android.content.Context;
 import android.widget.LinearLayout;
-import android.content.IntentFilter;
-import android.content.BroadcastReceiver;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
+import android.content.BroadcastReceiver;
+import android.content.IntentFilter;
 import android.os.Bundle;
 
 import fi.tuni.androidsudoku.sudoku.Constants;
 import fi.tuni.androidsudoku.sudoku.Sudoku;
 
 /**
- *
+ * Activity displaying Sudoku puzzle.
  */
 public class PuzzleActivity extends AppCompatActivity implements View.OnFocusChangeListener,
                                                                  View.OnLongClickListener {
 
     /**
-     *
+     * Stores all cells.
      */
     private CellView[] cells;
 
     /**
-     *
+     * Stores puzzle instance.
      */
     private Sudoku puzzle;
 
     /**
-     *
+     * Stores current cell selection.
      */
     private CellView currentSelection;
 
     /**
-     *
+     * Stores layout.
      */
     private LinearLayout grid;
 
     /**
-     *
+     * Stores timer broadcast listener.
      */
     private TimerEventReceiver timeEventListener;
 
     /**
-     *
+     * Defines layout parameters for rows.
      */
     private static final LinearLayout.LayoutParams ROW_PARAMS = new LinearLayout.LayoutParams(
         LinearLayout.LayoutParams.MATCH_PARENT, 0, 100f / Constants.GROUP_SIZE
     );
 
     /**
-     *
+     * Defines layout parameters for cells.
      */
     private static final LinearLayout.LayoutParams CELL_PARAMS = new LinearLayout.LayoutParams(
         0, LinearLayout.LayoutParams.MATCH_PARENT, 100f / Constants.GROUP_SIZE
     );
 
+    /**
+     * Overrides default constructor.
+     */
     public PuzzleActivity() {
         puzzle = new Sudoku();
     }
 
     /**
+     * Creates activity.
      *
-     * @param savedInstanceState
+     * @param savedInstanceState    Instance state.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,8 +97,9 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
     }
 
     /**
+     * Post-processes activity.
      *
-     * @param savedInstanceState
+     * @param savedInstanceState    Instance state.
      */
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -131,7 +136,7 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
     }
 
     /**
-     *
+     * Destroys activity.
      */
     @Override
     protected void onDestroy() {
@@ -142,8 +147,9 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
     }
 
     /**
+     * Updates given cell value.
      *
-     * @param view
+     * @param view  Target view.
      */
     public void updateCellValue(View view) {
         if (currentSelection != null) {
@@ -194,7 +200,7 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
     }
 
     /**
-     *
+     * Updates grid cell state.
      */
     private void updateGridStatus() {
         for (CellView cell : cells) {
@@ -207,9 +213,10 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
     }
 
     /**
+     * Listens for long click events.
      *
-     * @param view
-     * @return
+     * @param view  Target view.
+     * @return true if event is processed, false otherwise.
      */
     @Override
     public boolean onLongClick(View view) {
@@ -218,9 +225,10 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
     }
 
     /**
+     * Listens for focus change events.
      *
-     * @param view
-     * @param hasFocus
+     * @param view      Target view.
+     * @param hasFocus  Focus state.
      */
     @Override
     public void onFocusChange(View view, boolean hasFocus) {
@@ -238,10 +246,16 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
     }
 
     /**
-     *
+     * Private class for receiving broadcast events.
      */
     private class TimerEventReceiver extends BroadcastReceiver {
 
+        /**
+         * Receives broadcast events.
+         *
+         * @param context   Application context.
+         * @param intent    Sender intent.
+         */
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent != null && TimerService.TIMER_EVENT == intent.getAction()) {
