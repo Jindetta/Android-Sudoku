@@ -4,35 +4,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Class containing cell information.
  */
 public class Cell implements Cloneable {
 
     /**
-     *
+     * Stores cell index.
      */
     private int index;
 
     /**
-     *
+     * Stores cell value.
      */
     private int value;
 
     /**
-     *
+     * Stores cell lock state.
      */
     private boolean locked;
 
     /**
-     *
+     * Stores neighbour cells.
      */
     private List<Cell> neighbours;
 
     /**
+     * Overrides default constructor.
      *
-     * @param index
-     * @param value
-     * @param locked
+     * @param index     Cell index.
+     * @param value     Cell value.
+     * @param locked    Cell lock state.
      */
     public Cell(int index, int value, boolean locked) {
         neighbours = null;
@@ -48,8 +49,9 @@ public class Cell implements Cloneable {
     }
 
     /**
+     * Sets up neighbour cells.
      *
-     * @param puzzle
+     * @param puzzle    Puzzle information.
      */
     public void setupNeighbours(Cell[] puzzle) {
         neighbours = new ArrayList<>(20);
@@ -65,9 +67,10 @@ public class Cell implements Cloneable {
     }
 
     /**
+     * Checks if cell is neighbour.
      *
-     * @param cell
-     * @return
+     * @param cell  Cell to check.
+     * @return      True if cell is neighbour, false otherwise.
      */
     public boolean isNeighbourCell(Cell cell) {
         if (neighbours != null && cell != null) {
@@ -84,18 +87,20 @@ public class Cell implements Cloneable {
     }
 
     /**
+     * Checks if cell is neighbour.
      *
-     * @param cell
-     * @return
+     * @param cell  Cell to check.
+     * @return      True if cell is neighbour, false otherwise.
      */
     private boolean isNeighbour(Cell cell) {
         return neighbours != null && neighbours.contains(cell);
     }
 
     /**
+     * Checks if value is valid.
      *
-     * @param value
-     * @return
+     * @param value Value to check.
+     * @return      True if value is valid, false otherwise.
      */
     private boolean isValidCellValue(int value) {
         if (allowedValue(value)) {
@@ -114,8 +119,9 @@ public class Cell implements Cloneable {
     }
 
     /**
+     * Gets all valid values for this cell.
      *
-     * @return
+     * @return  List of integer values.
      */
     public List<Integer> getValidValues() {
         final int[] values = Constants.ALLOWED_VALUES;
@@ -131,8 +137,9 @@ public class Cell implements Cloneable {
     }
 
     /**
+     * Checks if cell has single valid value.
      *
-     * @return
+     * @return True if cell has single valid value, false otherwise.
      */
     public boolean hasSingleValidValue() {
         int validValues = 0;
@@ -147,16 +154,18 @@ public class Cell implements Cloneable {
     }
 
     /**
+     * Gets cell index.
      *
-     * @return
+     * @return Cell index.
      */
     public int getIndex() {
         return index;
     }
 
     /**
+     * Sets cell index.
      *
-     * @param index
+     * @param index Index to set.
      */
     private void setIndex(int index) {
         if (index < 0 || index >= Constants.PUZZLE_SIZE) {
@@ -167,16 +176,18 @@ public class Cell implements Cloneable {
     }
 
     /**
+     * Gets cell value.
      *
-     * @return
+     * @return Cell value.
      */
     public int getValue() {
         return value;
     }
 
     /**
+     * Sets cell value to next valid value.
      *
-     * @return
+     * @return True if set successfully, false otherwise.
      */
     public boolean setNextValue() {
         List<Integer> values = getValidValues();
@@ -194,9 +205,9 @@ public class Cell implements Cloneable {
     }
 
     /**
+     * Sets cell value.
      *
-     *
-     * @param value
+     * @param value Value to set.
      * @return
      */
     public boolean setValue(int value) {
@@ -210,9 +221,10 @@ public class Cell implements Cloneable {
     }
 
     /**
+     * Sets random cell value.
      *
-     * @param values
-     * @return
+     * @param values    List of random values.
+     * @return          True if value was set, false otherwise.
      */
     public boolean setRandomValue(List<Integer> values) {
         int randomIndex = (int) (Math.random() * values.size());
@@ -221,47 +233,52 @@ public class Cell implements Cloneable {
     }
 
     /**
+     * Forces value to cell.
      *
-     * @param value
+     * @param value Value to set.
      */
     public void forceValue(int value) {
         this.value = value;
     }
 
     /**
+     * Checks if cell is locked.
      *
-     * @return
+     * @return True if cell is locked, false otherwise.
      */
     public boolean isLocked() {
         return locked;
     }
 
     /**
+     * Sets cell lock state.
      *
-     * @param locked
+     * @param locked Lock state.
      */
     public void setLocked(boolean locked) {
         this.locked = locked;
     }
 
     /**
+     * Checks if cell has no value.
      *
-     * @return
+     * @return True if cell is empty, false otherwise.
      */
     public boolean isEmpty() {
         return value == Constants.EMPTY_CELL_VALUE;
     }
 
     /**
-     *
+     * Clears cell value.
      */
     public void setEmpty() {
         value = Constants.EMPTY_CELL_VALUE;
     }
 
     /**
+     * Gets block index.
      *
-     * @return
+     * @return Block index.
      */
     public int getBlock() {
         int row = index / (Constants.GROUP_SIZE * Constants.MULTIPLIER);
@@ -269,24 +286,27 @@ public class Cell implements Cloneable {
     }
 
     /**
+     * Gets column index.
      *
-     * @return
+     * @return Column index.
      */
     public int getColumn() {
         return index % Constants.GROUP_SIZE;
     }
 
     /**
+     * Gets row index.
      *
-     * @return
+     * @return Row index.
      */
     public int getRow() {
         return index / Constants.GROUP_SIZE;
     }
 
     /**
+     * Returns notes assigned to this cell.
      *
-     * @return
+     * @return String of notes.
      */
     public String getNotes() {
         StringBuilder notes = new StringBuilder();
@@ -307,8 +327,9 @@ public class Cell implements Cloneable {
     }
 
     /**
+     * Clones this cell.
      *
-     * @return
+     * @return Clones copy of this cell.
      */
     @Override
     public Cell clone() {
@@ -320,9 +341,10 @@ public class Cell implements Cloneable {
     }
 
     /**
+     * Checks if cell is equal to given object.
      *
-     * @param object
-     * @return
+     * @param object    Object to check.
+     * @return          True if equal, false otherwise.
      */
     @Override
     public boolean equals(Object object) {
@@ -342,8 +364,9 @@ public class Cell implements Cloneable {
     }
 
     /**
+     * Returns string representation of this cell.
      *
-     * @return
+     * @return Cell data as String value.
      */
     @Override
     public String toString() {
@@ -359,9 +382,10 @@ public class Cell implements Cloneable {
     }
 
     /**
+     * Checks if value is within allowed range.
      *
-     * @param value
-     * @return
+     * @param value Value to check.
+     * @return      True if within range, false otherwise.
      */
     private static boolean allowedValue(int value) {
         return value >= Constants.MIN_CELL_VALUE &&
