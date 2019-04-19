@@ -12,30 +12,32 @@ public class GeneratorTest {
     /**
      *
      */
-    private Solution solution;
+    private Sudoku sudoku;
 
     @Before
     public void SolutionTimeTest() {
+        sudoku = new Sudoku();
+
         long startTime = System.currentTimeMillis();
-        solution = new Solution();
+        sudoku.generateSolution();
         float completeTime = (System.currentTimeMillis() - startTime) / 1000f;
 
-        int[] solutionValues = solution.getSolutionValues();
+        int[] solutionValues = sudoku.getSolutionValues();
 
         assertTrue(completeTime < 0.025f);
         assertEquals(Constants.PUZZLE_SIZE, solutionValues.length);
         assertTrue(isValidSudokuPuzzle(solutionValues));
 
-        System.out.printf("Generated solution\t(%.3fs): %s%n", completeTime, solution);
+        System.out.printf("Generated sudoku\t(%.3fs): %s%n", completeTime, sudoku.getSolutionString());
     }
 
     @Test
     public void PuzzleTimeTest() {
         long startTime = System.currentTimeMillis();
-        SudokuPuzzle puzzle = new SudokuPuzzle(solution, SudokuPuzzle.Difficulty.VERY_HARD);
+        sudoku.generatePuzzle(Sudoku.Difficulty.VERY_HARD);
         float completeTime = (System.currentTimeMillis() - startTime) / 1000f;
 
-        System.out.printf("Generated puzzle\t(%.3fs): %s%n", completeTime, puzzle);
+        System.out.printf("Generated puzzle\t(%.3fs): %s%n", completeTime, sudoku.getPuzzleString(null));
     }
 
     /**
