@@ -5,7 +5,7 @@ import java.util.*;
 /**
  *
  */
-public class SudokuPuzzle {
+public class Sudoku {
 
     /**
      *
@@ -15,25 +15,64 @@ public class SudokuPuzzle {
     /**
      *
      */
-    private Solution solution;
+    private Cell[] solution;
 
     /**
      *
      */
-    public SudokuPuzzle(Difficulty difficulty) {
-        this(new Solution(), difficulty);
+    public Sudoku() {
+        solution = new Cell[Constants.PUZZLE_SIZE];
+
+        for (int i = 0; i < solution.length; i++) {
+            solution[i] = new Cell(i, Constants.EMPTY_CELL_VALUE, true);
+        }
+
+        setupNeighbourCells(solution);
     }
 
     /**
      *
-     * @param solution
+     */
+    public void generateSolution() {
+        int currentIndex = 0;
+
+        while (currentIndex < solution.length) {
+            Cell currentCell = solution[currentIndex];
+            List<Integer> values = currentCell.getValidValues();
+
+            if (values.isEmpty() || !currentCell.setRandomValue(values)) {
+                currentCell.setEmpty();
+                currentIndex--;
+            } else {
+                currentIndex++;
+            }
+        }
+
+        puzzle = copy(solution);
+    }
+
+    /**
+     *
      * @param difficulty
      */
-    public SudokuPuzzle(Solution solution, Difficulty difficulty) {
-        this.solution = solution;
+    public void generatePuzzle(Difficulty difficulty) {
+        List<Cell> filledCells = getListOfFilledCells(puzzle);
+        Random random = new Random();
 
-        puzzle = solution.copySolution();
-        generatePuzzle(difficulty);
+        while (filledCells.size() > difficulty.getCluesCount()) {
+            int index = random.nextInt(filledCells.size());
+            Cell randomCell = filledCells.get(index);
+
+            int value = randomCell.getValue();
+            randomCell.setEmpty();
+
+            if (randomCell.hasSingleValidValue() || isUniquePuzzle()) {
+                randomCell.setLocked(false);
+                filledCells.remove(index);
+            } else {
+                randomCell.setValue(value);
+            }
+        }
     }
 
     /**
@@ -72,48 +111,10 @@ public class SudokuPuzzle {
 
     /**
      *
-     * @param difficulty
-     */
-    private void generatePuzzle(Difficulty difficulty) {
-        List<Cell> filledCells = getListOfFilledCells(puzzle);
-        Random random = new Random();
-
-        while (filledCells.size() > difficulty.getCluesCount()) {
-            int index = random.nextInt(filledCells.size());
-            Cell randomCell = filledCells.get(index);
-
-            int value = randomCell.getValue();
-            randomCell.setEmpty();
-
-            if (randomCell.hasSingleValidValue() || isUniquePuzzle()) {
-                randomCell.setLocked(false);
-                filledCells.remove(index);
-            } else {
-                randomCell.setValue(value);
-            }
-        }
-    }
-
-    /**
-     *
-     */
-    private Cell[] copyPuzzle() {
-        Cell[] result = new Cell[puzzle.length];
-
-        for (int i = 0; i < result.length; i++) {
-            result[i] = puzzle[i].clone();
-        }
-
-        setupNeighbourCells(result);
-        return result;
-    }
-
-    /**
-     *
      * @return
      */
     private boolean isUniquePuzzle() {
-        Cell[] puzzle = copyPuzzle();
+        Cell[] puzzle = copy(this.puzzle);
         List<Cell> cells = getListOfEmptyCells(puzzle);
         int currentIndex = 0;
 
@@ -138,7 +139,7 @@ public class SudokuPuzzle {
      */
     private boolean verifyPuzzle(Cell[] puzzle) {
         for (int i = 0; i < puzzle.length; i++) {
-            if (puzzle[i].getValue() != solution.get(i).getValue()) {
+            if (puzzle[i].getValue() != solution[i].getValue()) {
                 return false;
             }
         }
@@ -175,21 +176,33 @@ public class SudokuPuzzle {
 
     /**
      *
+     * @return
+     */
+    public int[] getSolutionValues() {
+        int[] result = new int[solution.length];
+
+        for (int i = 0; i < result.length; i++) {
+            result[i] = solution[i].getValue();
+        }
+
+        return result;
+    }
+
+    /**
+     *
      * @param format
      * @return
      */
     public String getPuzzleString(Format format) {
-        StringBuilder builder = new StringBuilder();
+        return getStringValue(puzzle, format);
+    }
 
-        for (Cell cell : puzzle) {
-            if (format != null && cell.isEmpty()) {
-                builder.append(format.getFillCharacter());
-            } else {
-                builder.append(cell.getValue());
-            }
-        }
-
-        return builder.toString();
+    /**
+     *
+     * @return
+     */
+    public String getSolutionString() {
+        return getStringValue(solution, null);
     }
 
     /**
@@ -198,7 +211,12 @@ public class SudokuPuzzle {
      */
     @Override
     public String toString() {
-        return getPuzzleString(null);
+        return String.format(
+            Locale.ENGLISH,
+            "Solution: %s%nPuzzle: %s",
+            getSolutionString(),
+            getPuzzleString(null)
+        );
     }
 
     /**
@@ -268,9 +286,43 @@ public class SudokuPuzzle {
     /**
      *
      */
-    private static void setupNeighbourCells(Cell[] puzzle) {
-        for (Cell cell : puzzle) {
-            cell.setupNeighbours(puzzle);
+    private static Cell[] copy(Cell[] cells) {
+        Cell[] result = new Cell[cells.length];
+
+        for (int i = 0; i < result.length; i++) {
+            result[i] = cells[i].clone();
+        }
+
+        setupNeighbourCells(result);
+        return result;
+    }
+
+    /**
+     *
+     * @param cells
+     * @param format
+     * @return
+     */
+    private String getStringValue(Cell[] cells, Format format) {
+        StringBuilder builder = new StringBuilder();
+
+        for (Cell cell : cells) {
+            if (format != null && cell.isEmpty()) {
+                builder.append(format.getFillCharacter());
+            } else {
+                builder.append(cell.getValue());
+            }
+        }
+
+        return builder.toString();
+    }
+
+    /**
+     *
+     */
+    private static void setupNeighbourCells(Cell[] cells) {
+        for (Cell cell : cells) {
+            cell.setupNeighbours(cells);
         }
     }
 }
