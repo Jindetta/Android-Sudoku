@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     public void clickHandler(View view) {
         switch (view.getId()) {
             case R.id.start: {
-                startActivity(new Intent(this, PuzzleActivity.class));
+                startActivity(new Intent(this, SelectionActivity.class));
                 break;
             }
             case R.id.scoreboard: {
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
             case R.id.settings: {
-                // Open settings
+                startActivity(new Intent(this, SettingsActivity.class));
                 break;
             }
         }
