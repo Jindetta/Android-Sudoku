@@ -4,42 +4,44 @@ import android.graphics.*;
 import android.content.Context;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.ContextThemeWrapper;
-import android.view.View;
 
 import fi.tuni.androidsudoku.sudoku.Cell;
 import fi.tuni.androidsudoku.sudoku.Constants;
 
 /**
- *
+ * View representing each cell in puzzle.
  */
 public class CellView extends AppCompatTextView {
 
     /**
-     *
+     * Stores cell data.
      */
     private Cell cell;
 
     /**
-     *
+     * Stores notes.
      */
     private boolean notes;
 
     /**
-     *
+     * Stores paint color.
      */
     private static Paint paint;
 
     /**
+     * Overrides default constructor.
      *
-     * @param context
+     * @param context   Application context.
      */
     private CellView(Context context) {
         super(new ContextThemeWrapper(context, R.style.SudokuCell));
     }
 
     /**
+     * Overloads default constructor.
      *
-     * @param context
+     * @param context   Application context.
+     * @param cell      Cell information.
      */
     public CellView(Context context, Cell cell) {
         this(context);
@@ -56,7 +58,7 @@ public class CellView extends AppCompatTextView {
     }
 
     /**
-     *
+     * Updates cell view.
      */
     private void updateCell() {
         if (cell != null) {
@@ -72,17 +74,17 @@ public class CellView extends AppCompatTextView {
     }
 
     /**
+     * Checks if cell should be highlighted.
      *
-     * @param view
-     * @return
+     * @param view  Target view.
+     * @return      True if cell should highlight, false otherwise.
      */
     public boolean shouldActivate(CellView view) {
         return cell != null && cell.isNeighbourCell(view.cell);
     }
 
     /**
-     *
-     * @return
+     * Sets cell value.
      */
     public void setCellValue(int value) {
         if (value != Constants.EMPTY_CELL_VALUE) {
@@ -95,7 +97,7 @@ public class CellView extends AppCompatTextView {
     }
 
     /**
-     *
+     * Updates cell text value.
      */
     public void updateCellText() {
         if (!cell.isEmpty()) {
@@ -110,8 +112,9 @@ public class CellView extends AppCompatTextView {
     }
 
     /**
+     * Draws cell to canvas.
      *
-     * @param canvas
+     * @param canvas    Application canvas.
      */
     @Override
     protected void onDraw(Canvas canvas) {
