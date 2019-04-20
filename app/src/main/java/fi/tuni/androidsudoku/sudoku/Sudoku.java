@@ -3,22 +3,22 @@ package fi.tuni.androidsudoku.sudoku;
 import java.util.*;
 
 /**
- *
+ * Class for generating sudoku puzzles.
  */
 public class Sudoku {
 
     /**
-     *
+     * Stores puzzle.
      */
     private Cell[] puzzle;
 
     /**
-     *
+     * Stores puzzle solution;
      */
     private Cell[] solution;
 
     /**
-     *
+     * Overrides default constructor.
      */
     public Sudoku() {
         solution = new Cell[Constants.PUZZLE_SIZE];
@@ -31,7 +31,7 @@ public class Sudoku {
     }
 
     /**
-     *
+     * Produces puzzle solution.
      */
     public void generateSolution() {
         int currentIndex = 0;
@@ -52,8 +52,9 @@ public class Sudoku {
     }
 
     /**
+     * Generates puzzle based on difficulty.
      *
-     * @param difficulty
+     * @param difficulty    Difficulty setting.
      */
     public void generatePuzzle(Difficulty difficulty) {
         List<Cell> filledCells = getListOfFilledCells(puzzle);
@@ -76,9 +77,10 @@ public class Sudoku {
     }
 
     /**
+     * Gets list of empty cells.
      *
-     * @param puzzle
-     * @return
+     * @param puzzle    Puzzle to read.
+     * @return          List of empty cells.
      */
     private List<Cell> getListOfEmptyCells(Cell[] puzzle) {
         List<Cell> results = new ArrayList<>();
@@ -93,9 +95,10 @@ public class Sudoku {
     }
 
     /**
+     * Gets list of filled cells.
      *
-     * @param puzzle
-     * @return
+     * @param puzzle    Puzzle to read.
+     * @return          List of filled cells.
      */
     private List<Cell> getListOfFilledCells(Cell[] puzzle) {
         List<Cell> results = new ArrayList<>(puzzle.length);
@@ -110,8 +113,9 @@ public class Sudoku {
     }
 
     /**
+     * Checks if puzzle is unique.
      *
-     * @return
+     * @return  True if puzzle is unique, false otherwise.
      */
     private boolean isUniquePuzzle() {
         Cell[] puzzle = copy(this.puzzle);
@@ -133,9 +137,10 @@ public class Sudoku {
     }
 
     /**
+     * Verifies validity of puzzle.
      *
-     * @param puzzle
-     * @return
+     * @param puzzle    Puzzle to verify.
+     * @return          True if puzzle is valid, false otherwise.
      */
     private boolean verifyPuzzle(Cell[] puzzle) {
         for (int i = 0; i < puzzle.length; i++) {
@@ -148,8 +153,9 @@ public class Sudoku {
     }
 
     /**
+     * Checks if puzzle is complete.
      *
-     * @return
+     * @return  True if puzzle is complete, false otherwise.
      */
     public boolean puzzleIsComplete() {
         for (Cell cell : puzzle) {
@@ -162,9 +168,10 @@ public class Sudoku {
     }
 
     /**
+     * Gets cell information.
      *
-     * @param index
-     * @return
+     * @param index Index of cell.
+     * @return      Cell data.
      */
     public Cell getCellInfo(int index) {
         if (index >= 0 && index < puzzle.length) {
@@ -175,8 +182,9 @@ public class Sudoku {
     }
 
     /**
+     * Gets complete solution as integer array.
      *
-     * @return
+     * @return Solution as integer array.
      */
     public int[] getSolutionValues() {
         int[] result = new int[solution.length];
@@ -189,25 +197,28 @@ public class Sudoku {
     }
 
     /**
+     * Gets puzzle as string.
      *
-     * @param format
-     * @return
+     * @param format    Puzzle format.
+     * @return          String representation of the puzzle.
      */
     public String getPuzzleString(Format format) {
         return getStringValue(puzzle, format);
     }
 
     /**
+     * Gets solution as string.
      *
-     * @return
+     * @return          String representation of the solution.
      */
     public String getSolutionString() {
         return getStringValue(solution, null);
     }
 
     /**
+     * Outputs string with puzzle and solution.
      *
-     * @return
+     * @return String representation of this class.
      */
     @Override
     public String toString() {
@@ -220,7 +231,7 @@ public class Sudoku {
     }
 
     /**
-     *
+     * Enumeration for difficulties.
      */
     public enum Difficulty {
         NONE        (81),
@@ -230,21 +241,23 @@ public class Sudoku {
         VERY_HARD   (28);
 
         /**
-         *
+         * Stores clue count.
          */
         private int cluesCount;
 
         /**
+         * Overrides default constructor.
          *
-         * @param cluesCount
+         * @param cluesCount    Clues to show.
          */
         Difficulty(int cluesCount) {
             this.cluesCount = cluesCount;
         }
 
         /**
+         * Gets clue count.
          *
-         * @return
+         * @return Clue count as integer.
          */
         public int getCluesCount() {
             return cluesCount;
@@ -252,7 +265,7 @@ public class Sudoku {
     }
 
     /**
-     *
+     * Enumeration for string formats.
      */
     public enum Format {
         USE_DOT_FILL            ('.'),
@@ -262,21 +275,23 @@ public class Sudoku {
         USE_QUESTION_MARK_FILL  ('?');
 
         /**
-         *
+         * Stores fill character.
          */
         private char fillCharacter;
 
         /**
+         * Overrides default constructor.
          *
-         * @param fillCharacter
+         * @param fillCharacter Fill character to use.
          */
         Format(char fillCharacter) {
             this.fillCharacter = fillCharacter;
         }
 
         /**
+         * Gets fill character.
          *
-         * @return
+         * @return Fill character.
          */
         public char getFillCharacter() {
             return fillCharacter;
@@ -284,7 +299,7 @@ public class Sudoku {
     }
 
     /**
-     *
+     * Copies all cells.
      */
     private static Cell[] copy(Cell[] cells) {
         Cell[] result = new Cell[cells.length];
@@ -298,10 +313,11 @@ public class Sudoku {
     }
 
     /**
+     * Gets string value from array of cells.
      *
-     * @param cells
-     * @param format
-     * @return
+     * @param cells     Array of cells.
+     * @param format    String format.
+     * @return          String representation of cells.
      */
     private String getStringValue(Cell[] cells, Format format) {
         StringBuilder builder = new StringBuilder();
@@ -318,7 +334,7 @@ public class Sudoku {
     }
 
     /**
-     *
+     * Sets up neighbour cells.
      */
     private static void setupNeighbourCells(Cell[] cells) {
         for (Cell cell : cells) {
