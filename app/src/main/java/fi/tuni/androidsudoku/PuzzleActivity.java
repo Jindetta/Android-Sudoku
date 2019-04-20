@@ -1,13 +1,10 @@
 package fi.tuni.androidsudoku;
 
+import android.content.*;
 import android.view.View;
-import android.content.Intent;
-import android.content.Context;
 import android.widget.LinearLayout;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
-import android.content.BroadcastReceiver;
-import android.content.IntentFilter;
 import android.os.Bundle;
 
 import fi.tuni.androidsudoku.sudoku.Constants;
@@ -28,6 +25,16 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
      * Stores puzzle instance.
      */
     private Sudoku puzzle;
+
+    /**
+     * Stores cell highlight state.
+     */
+    private boolean highlightCells;
+
+    /**
+     * Stores note display state.
+     */
+    private boolean displayNotes;
 
     /**
      * Stores current cell selection.
@@ -75,17 +82,13 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_puzzle);
 
-        Intent intent = getIntent();
         grid = findViewById(R.id.puzzle);
         cells = new CellView[Constants.PUZZLE_SIZE];
-        puzzle.generateSolution();
+        setupPuzzle(getIntent());
 
-        for (Sudoku.Difficulty difficulty : Sudoku.Difficulty.values()) {
-            if (difficulty.name().equals(intent.getStringExtra("difficulty"))) {
-                puzzle.generatePuzzle(difficulty);
-                break;
-            }
-        }
+        SharedPreferences prefs = getSharedPreferences(SettingsActivity.KEY, MODE_PRIVATE);
+        highlightCells = prefs.getBoolean("highlight", true);
+        displayNotes = prefs.getBoolean("hints", true);
 
         timeEventListener = new TimerEventReceiver();
         Intent timer = new Intent(this, TimerService.class);
@@ -111,7 +114,7 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
             LinearLayout row = new LinearLayout(this);
 
             for (int j = 0; j < Constants.GROUP_SIZE; j++) {
-                CellView cell = new CellView(this, puzzle.getCellInfo(index));
+                CellView cell = new CellView(this, puzzle.getCellInfo(index), displayNotes);
 
                 cell.setMinWidth(CELL_PARAMS.width);
                 cell.setMaxWidth(CELL_PARAMS.width);
@@ -213,6 +216,22 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
     }
 
     /**
+     * Initializes puzzle with intended difficulty.
+     *
+     * @param intent    Intent data.
+     */
+    private void setupPuzzle(Intent intent) {
+        puzzle.generateSolution();
+
+        for (Sudoku.Difficulty difficulty : Sudoku.Difficulty.values()) {
+            if (difficulty.name().equals(intent.getStringExtra("difficulty"))) {
+                puzzle.generatePuzzle(difficulty);
+                break;
+            }
+        }
+    }
+
+    /**
      * Listens for long click events.
      *
      * @param view  Target view.
@@ -236,7 +255,7 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
             currentSelection = (CellView) view;
 
             for (CellView cell : cells) {
-                if (cell.isFocusable()) {
+                if (highlightCells && cell.isFocusable()) {
                     cell.setActivated(currentSelection.shouldActivate(cell));
                 }
 

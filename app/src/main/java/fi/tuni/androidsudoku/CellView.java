@@ -42,8 +42,9 @@ public class CellView extends AppCompatTextView {
      *
      * @param context   Application context.
      * @param cell      Cell information.
+     * @param notes     Note visibility.
      */
-    public CellView(Context context, Cell cell) {
+    public CellView(Context context, Cell cell, boolean notes) {
         this(context);
 
         if (paint == null) {
@@ -53,7 +54,7 @@ public class CellView extends AppCompatTextView {
         }
 
         this.cell = cell;
-        this.notes = true;
+        this.notes = notes;
         updateCell();
     }
 
