@@ -8,8 +8,16 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+/**
+ * Activity displaying main menu.
+ */
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * Creates activity.
+     *
+     * @param savedInstanceState Instance state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +29,11 @@ public class MainActivity extends AppCompatActivity {
         animation.start();
     }
 
+    /**
+     * Listens for click events.
+     *
+     * @param view  Target view.
+     */
     public void clickHandler(View view) {
         switch (view.getId()) {
             case R.id.start: {
