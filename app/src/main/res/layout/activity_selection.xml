@@ -9,25 +9,25 @@
         android:orientation="vertical">
 
     <Button android:id="@+id/easy"
-            android:text="Easy puzzle"
+            android:text="@string/easy"
             android:onClick="puzzleSelection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
     <Button android:id="@+id/medium"
-            android:text="Medium puzzle"
+            android:text="@string/medium"
             android:onClick="puzzleSelection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
     <Button android:id="@+id/hard"
-            android:text="Hard puzzle"
+            android:text="@string/hard"
             android:onClick="puzzleSelection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
     <Button android:id="@+id/very_hard"
-            android:text="Very Hard puzzle"
+            android:text="@string/very_hard"
             android:onClick="puzzleSelection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

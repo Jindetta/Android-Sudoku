@@ -9,13 +9,13 @@
         android:orientation="vertical">
 
     <CheckBox android:id="@+id/toggleHints"
-              android:text="Enable hints"
+              android:text="@string/hints"
               android:onClick="settingsListener"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"/>
 
     <CheckBox android:id="@+id/toggleHighlight"
-              android:text="Enable highlighting"
+              android:text="@string/highlight"
               android:onClick="settingsListener"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"/>
