@@ -310,17 +310,14 @@ public class Cell implements Cloneable {
      */
     public String getNotes() {
         StringBuilder notes = new StringBuilder();
-        List<Integer> values = getValidValues();
-        int index = 1;
+        final List<Integer> values = getValidValues();
 
-        for (Integer value : values) {
-            notes.append(value);
+        for (Integer number : Constants.ALLOWED_VALUES) {
+            notes.append(values.contains(number) ? number : "\u2000");
 
-            if (index < values.size()) {
-                notes.append(index % Constants.MULTIPLIER == 0 ? "\n" : " ");
+            if (number < Constants.GROUP_SIZE) {
+                notes.append(number % Constants.MULTIPLIER == 0 ? "\n" : "\u2000");
             }
-
-            index++;
         }
 
         return notes.toString();
