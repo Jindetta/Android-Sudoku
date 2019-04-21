@@ -30,12 +30,6 @@
                 android:text="@string/start"
                 android:onClick="clickHandler"/>
 
-        <Button android:id="@+id/scoreboard"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:text="@string/scoreboards"
-                android:onClick="clickHandler"/>
-
         <Button android:id="@+id/settings"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"

@@ -40,10 +40,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, SelectionActivity.class));
                 break;
             }
-            case R.id.scoreboard: {
-                // Show scoreboard
-                break;
-            }
             case R.id.settings: {
                 startActivity(new Intent(this, SettingsActivity.class));
                 break;
