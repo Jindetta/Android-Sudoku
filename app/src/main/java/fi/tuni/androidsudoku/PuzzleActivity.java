@@ -2,6 +2,7 @@ package fi.tuni.androidsudoku;
 
 import android.content.*;
 import android.view.View;
+import android.widget.Toast;
 import android.widget.LinearLayout;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
@@ -155,7 +156,7 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
      * @param view  Target view.
      */
     public void updateCellValue(View view) {
-        if (currentSelection != null) {
+        if (currentSelection != null && currentSelection.isFocusable()) {
             int value = Constants.EMPTY_CELL_VALUE;
 
             switch (view.getId()) {
@@ -206,12 +207,21 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
      * Updates grid cell state.
      */
     private void updateGridStatus() {
-        for (CellView cell : cells) {
-            cell.updateCellText();
-        }
-
         if (puzzle.puzzleIsComplete()) {
+            for (CellView cell : cells) {
+                cell.setActivated(false);
+                cell.setFocusable(false);
+                cell.setSelected(false);
+
+                cell.updateCellText();
+            }
+
             stopService(new Intent(this, TimerService.class));
+            Toast.makeText(this, R.string.completed, Toast.LENGTH_LONG).show();
+        } else {
+            for (CellView cell : cells) {
+                cell.updateCellText();
+            }
         }
     }
 
