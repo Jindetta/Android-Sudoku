@@ -14,6 +14,14 @@
     <string name="set_9">9</string>
     <string name="clear">C</string>
 
+    <string name="easy">Puzzle with 44 clues</string>
+    <string name="medium">Puzzle with 39 clues</string>
+    <string name="hard">Puzzle with 36 clues</string>
+    <string name="very_hard">Puzzle with 28 clues</string>
+
+    <string name="hints">Toggle hints</string>
+    <string name="highlight">Toggle highlighting</string>
+
     <string name="start">Start game</string>
     <string name="scoreboards">Scoreboards</string>
     <string name="settings">Settings</string>
