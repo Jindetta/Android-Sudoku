@@ -123,7 +123,7 @@ public class Cell implements Cloneable {
      *
      * @return  List of integer values.
      */
-    public List<Integer> getValidValues() {
+    public List<Integer> getCandidates() {
         final int[] values = Constants.ALLOWED_VALUES;
         List<Integer> results = new ArrayList<>(values.length);
 
@@ -190,7 +190,7 @@ public class Cell implements Cloneable {
      * @return True if set successfully, false otherwise.
      */
     public boolean setNextValue() {
-        List<Integer> values = getValidValues();
+        List<Integer> values = getCandidates();
         int index = values.indexOf(getValue());
 
         if (index != -1) {
@@ -310,7 +310,7 @@ public class Cell implements Cloneable {
      */
     public String getNotes() {
         StringBuilder notes = new StringBuilder();
-        final List<Integer> values = getValidValues();
+        final List<Integer> values = getCandidates();
 
         for (Integer number : Constants.ALLOWED_VALUES) {
             notes.append(values.contains(number) ? number : "\u2000");

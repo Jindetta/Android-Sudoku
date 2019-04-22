@@ -38,7 +38,7 @@ public class Sudoku {
 
         while (currentIndex < solution.length) {
             Cell currentCell = solution[currentIndex];
-            List<Integer> values = currentCell.getValidValues();
+            List<Integer> values = currentCell.getCandidates();
 
             if (values.isEmpty() || !currentCell.setRandomValue(values)) {
                 currentCell.setEmpty();
