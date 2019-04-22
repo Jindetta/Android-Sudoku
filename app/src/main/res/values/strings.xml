@@ -19,12 +19,11 @@
     <string name="medium">Puzzle with 39 clues</string>
     <string name="hard">Puzzle with 36 clues</string>
     <string name="very_hard">Puzzle with 28 clues</string>
+    <string name="difficulty">Choose difficulty</string>
 
     <string name="hints">Toggle hints</string>
     <string name="highlight">Toggle highlighting</string>
 
     <string name="start">Start game</string>
-    <string name="scoreboards">Scoreboards</string>
     <string name="settings">Settings</string>
-    <string name="exit">Exit</string>
 </resources>
