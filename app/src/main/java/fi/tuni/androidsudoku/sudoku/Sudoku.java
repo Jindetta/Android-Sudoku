@@ -162,8 +162,15 @@ public class Sudoku {
      * @return  True if puzzle is complete, false otherwise.
      */
     public boolean puzzleIsComplete() {
-        for (Cell cell : puzzle) {
-            if (cell.isEmpty() || !cell.hasSingleCandidate()) {
+        for (int i = 0; i < Constants.GROUP_SIZE; i++) {
+            int verificationValue = 0;
+
+            for (int j = 0; j < Constants.GROUP_SIZE; j++) {
+                verificationValue += Math.pow(2, puzzle[i * Constants.GROUP_SIZE + j].getValue() - 1)
+                                   + Math.pow(2, puzzle[j * Constants.GROUP_SIZE + i].getValue() - 1);
+            }
+
+            if (verificationValue != Constants.PUZZLE_VERIFY_VALUE) {
                 return false;
             }
         }
@@ -183,21 +190,6 @@ public class Sudoku {
         }
 
         return null;
-    }
-
-    /**
-     * Gets complete solution as integer array.
-     *
-     * @return Solution as integer array.
-     */
-    public int[] getSolutionValues() {
-        int[] result = new int[solution.length];
-
-        for (int i = 0; i < result.length; i++) {
-            result[i] = solution[i].getValue();
-        }
-
-        return result;
     }
 
     /**

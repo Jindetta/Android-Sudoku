@@ -27,7 +27,7 @@ public final class Constants {
     /**
      * Defines puzzle verification value.
      */
-    public static final int PUZZLE_VERIFY_VALUE = 511;
+    public static final int PUZZLE_VERIFY_VALUE = 1022;
 
     /**
      * Defines minimum allowed value.
