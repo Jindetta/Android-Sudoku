@@ -13,6 +13,8 @@ public class SelectionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selection);
+
+        setTitle(R.string.difficulty);
     }
 
     public void puzzleSelection(View view) {
