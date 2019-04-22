@@ -64,7 +64,7 @@ public class Sudoku {
         List<Cell> filledCells = getListOfFilledCells(puzzle);
         Random random = new Random();
 
-        while (filledCells.size() > difficulty.getCluesCount()) {
+        while (filledCells.size() > difficulty.getClueCount()) {
             int index = random.nextInt(filledCells.size());
             Cell randomCell = filledCells.get(index);
 
@@ -247,15 +247,15 @@ public class Sudoku {
         /**
          * Stores clue count.
          */
-        private int cluesCount;
+        private int clueCount;
 
         /**
          * Overrides default constructor.
          *
-         * @param cluesCount    Clues to show.
+         * @param clueCount    Clues to show.
          */
-        Difficulty(int cluesCount) {
-            this.cluesCount = cluesCount;
+        Difficulty(int clueCount) {
+            this.clueCount = clueCount;
         }
 
         /**
@@ -263,8 +263,8 @@ public class Sudoku {
          *
          * @return Clue count as integer.
          */
-        public int getCluesCount() {
-            return cluesCount;
+        public int getClueCount() {
+            return clueCount;
         }
     }
 
