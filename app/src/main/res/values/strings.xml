@@ -15,10 +15,10 @@
     <string name="set_9">9</string>
     <string name="clear">C</string>
 
-    <string name="easy">Puzzle with 40 clues</string>
-    <string name="medium">Puzzle with 36 clues</string>
-    <string name="hard">Puzzle with 32 clues</string>
-    <string name="very_hard">Puzzle with 28 clues</string>
+    <string name="easy">Generate puzzle with 40 clues</string>
+    <string name="medium">Generate puzzle with 36 clues</string>
+    <string name="hard">Generate puzzle with 32 clues</string>
+    <string name="very_hard">Generate puzzle with 28 clues</string>
     <string name="difficulty">Choose difficulty</string>
 
     <string name="hints">Toggle hints</string>
