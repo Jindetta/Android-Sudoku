@@ -19,9 +19,6 @@
         </activity>
         <activity android:name=".PuzzleActivity"
                   android:screenOrientation="portrait"/>
-        <activity android:name=".SettingsActivity"
-                  android:screenOrientation="portrait">
-        </activity>
         <activity android:name=".SelectionActivity"
                   android:screenOrientation="portrait">
         </activity>

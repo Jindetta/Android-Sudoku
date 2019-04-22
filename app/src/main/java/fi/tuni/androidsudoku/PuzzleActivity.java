@@ -91,7 +91,7 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnFocusCha
         cells = new CellView[Constants.PUZZLE_SIZE];
         setupPuzzle(getIntent());
 
-        SharedPreferences prefs = getSharedPreferences(SettingsActivity.KEY, MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences(MainActivity.SETTINGS_KEY, MODE_PRIVATE);
         highlightCells = prefs.getBoolean("highlight", true);
         displayNotes = prefs.getBoolean("hints", true);
 
