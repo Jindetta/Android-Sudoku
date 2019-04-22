@@ -141,7 +141,7 @@ public class Cell implements Cloneable {
      *
      * @return True if cell has single valid value, false otherwise.
      */
-    public boolean hasSingleValidValue() {
+    public boolean hasSingleCandidate() {
         int validValues = 0;
 
         for (int value : Constants.ALLOWED_VALUES) {

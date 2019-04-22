@@ -67,7 +67,7 @@ public class Sudoku {
             int value = randomCell.getValue();
             randomCell.setEmpty();
 
-            if (randomCell.hasSingleValidValue() || isUniquePuzzle()) {
+            if (randomCell.hasSingleCandidate() || isUniquePuzzle()) {
                 randomCell.setLocked(false);
                 filledCells.remove(index);
             } else {
@@ -159,7 +159,7 @@ public class Sudoku {
      */
     public boolean puzzleIsComplete() {
         for (Cell cell : puzzle) {
-            if (cell.isEmpty() || !cell.hasSingleValidValue()) {
+            if (cell.isEmpty() || !cell.hasSingleCandidate()) {
                 return false;
             }
         }
