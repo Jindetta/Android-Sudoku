@@ -4,6 +4,10 @@ import java.util.*;
 
 /**
  * Class for generating sudoku puzzles.
+ *
+ * @author  Joonas Lauhala @literal<joonas.lauhala@tuni.fi>
+ * @version 20190422
+ * @since   1.8
  */
 public class Sudoku {
 

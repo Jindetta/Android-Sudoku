@@ -2,6 +2,10 @@ package fi.tuni.androidsudoku.sudoku;
 
 /**
  * Class containing all important constants needed for puzzle generation.
+ *
+ * @author  Joonas Lauhala @literal<joonas.lauhala@tuni.fi>
+ * @version 20190422
+ * @since   1.8
  */
 public final class Constants {
 

@@ -13,6 +13,10 @@ import fi.tuni.androidsudoku.sudoku.Sudoku;
 
 /**
  * Activity displaying Sudoku puzzle.
+ *
+ * @author  Joonas Lauhala @literal<joonas.lauhala@tuni.fi>
+ * @version 20190422
+ * @since   1.8
  */
 public class PuzzleActivity extends AppCompatActivity implements View.OnFocusChangeListener,
                                                                  View.OnLongClickListener {

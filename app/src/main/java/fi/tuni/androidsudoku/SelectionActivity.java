@@ -9,6 +9,10 @@ import fi.tuni.androidsudoku.sudoku.Sudoku;
 
 /**
  * Activity displaying difficulty options.
+ *
+ * @author  Joonas Lauhala @literal<joonas.lauhala@tuni.fi>
+ * @version 20190422
+ * @since   1.8
  */
 public class SelectionActivity extends AppCompatActivity {
 
