@@ -1,10 +1,11 @@
-package fi.tuni.androidsudoku;
+package fi.tuni.androidsudoku.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import fi.tuni.androidsudoku.R;
 import fi.tuni.androidsudoku.sudoku.Sudoku;
 
 /**

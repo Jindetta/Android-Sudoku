@@ -1,4 +1,4 @@
-package fi.tuni.androidsudoku;
+package fi.tuni.androidsudoku.activities;
 
 import android.content.*;
 import android.view.View;
@@ -8,6 +8,9 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import fi.tuni.androidsudoku.CellView;
+import fi.tuni.androidsudoku.R;
+import fi.tuni.androidsudoku.TimerService;
 import fi.tuni.androidsudoku.sudoku.Constants;
 import fi.tuni.androidsudoku.sudoku.Sudoku;
 

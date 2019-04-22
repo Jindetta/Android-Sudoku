@@ -1,4 +1,4 @@
-package fi.tuni.androidsudoku;
+package fi.tuni.androidsudoku.activities;
 
 import android.app.*;
 import android.content.Intent;
@@ -12,6 +12,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
+import fi.tuni.androidsudoku.R;
 
 /**
  * Activity displaying main menu.
