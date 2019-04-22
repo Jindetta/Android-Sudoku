@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
      * Updates current slide.
      */
     private void updateSlide() {
-        handler.postDelayed(event, 2500);
+        handler.postDelayed(event, 2000);
         slideIndex = (slideIndex + 1) % IMAGES.length;
         switcher.setImageResource(IMAGES[slideIndex]);
     }
