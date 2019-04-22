@@ -17,7 +17,7 @@ public class Sudoku {
     private Cell[] puzzle;
 
     /**
-     * Stores puzzle solution;
+     * Stores puzzle solution.
      */
     private Cell[] solution;
 
