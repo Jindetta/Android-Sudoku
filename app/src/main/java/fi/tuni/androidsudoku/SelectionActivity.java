@@ -7,8 +7,16 @@ import android.view.View;
 
 import fi.tuni.androidsudoku.sudoku.Sudoku;
 
+/**
+ * Activity displaying difficulty options.
+ */
 public class SelectionActivity extends AppCompatActivity {
 
+    /**
+     * Creates activity.
+     *
+     * @param savedInstanceState Instance state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,6 +25,11 @@ public class SelectionActivity extends AppCompatActivity {
         setTitle(R.string.difficulty);
     }
 
+    /**
+     * Listens for click events.
+     *
+     * @param view Target view.
+     */
     public void puzzleSelection(View view) {
         Intent activity = new Intent(this, PuzzleActivity.class);
 
