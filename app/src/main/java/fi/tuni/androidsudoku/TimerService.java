@@ -8,7 +8,7 @@ import android.support.v4.content.LocalBroadcastManager;
 /**
  * Service for keeping track of time.
  *
- * @author  Joonas Lauhala @literal<joonas.lauhala@tuni.fi>
+ * @author  Joonas Lauhala @literal{<joonas.lauhala@tuni.fi>}
  * @version 20190422
  * @since   1.8
  */

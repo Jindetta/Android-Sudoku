@@ -11,7 +11,7 @@ import android.widget.ImageView;
 /**
  * Activity displaying main menu.
  *
- * @author  Joonas Lauhala @literal<joonas.lauhala@tuni.fi>
+ * @author  Joonas Lauhala @literal{<joonas.lauhala@tuni.fi>}
  * @version 20190422
  * @since   1.8
  */
