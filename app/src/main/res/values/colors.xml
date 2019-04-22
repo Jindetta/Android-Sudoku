@@ -12,7 +12,7 @@
     <color name="cellDefaultFont">#111111</color>
     <color name="cellDefaultBackground">#FFFFFF</color>
 
-    <color name="cellBorderHighlight">#220000</color>
+    <color name="cellBorderHighlight">#000022</color>
     <color name="cellBorder">#272727</color>
 
     <color name="cellActivated">#F0FFFF</color>
