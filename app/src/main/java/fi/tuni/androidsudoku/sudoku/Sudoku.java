@@ -239,9 +239,9 @@ public class Sudoku {
      */
     public enum Difficulty {
         NONE        (81),
-        EASY        (44),
-        MEDIUM      (39),
-        HARD        (36),
+        EASY        (40),
+        MEDIUM      (36),
+        HARD        (32),
         VERY_HARD   (28);
 
         /**

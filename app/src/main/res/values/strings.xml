@@ -15,9 +15,9 @@
     <string name="set_9">9</string>
     <string name="clear">C</string>
 
-    <string name="easy">Puzzle with 44 clues</string>
-    <string name="medium">Puzzle with 39 clues</string>
-    <string name="hard">Puzzle with 36 clues</string>
+    <string name="easy">Puzzle with 40 clues</string>
+    <string name="medium">Puzzle with 36 clues</string>
+    <string name="hard">Puzzle with 32 clues</string>
     <string name="very_hard">Puzzle with 28 clues</string>
     <string name="difficulty">Choose difficulty</string>
 
