@@ -6,7 +6,7 @@
     <color name="colorAccent">#FF4081</color>
 
     <!-- Custom colors -->
-    <color name="cellLockedFont">#FF0000</color>
+    <color name="cellLockedFont">#3F51B5</color>
     <color name="cellLockedBackground">#CFCFCF</color>
 
     <color name="cellDefaultFont">#111111</color>
