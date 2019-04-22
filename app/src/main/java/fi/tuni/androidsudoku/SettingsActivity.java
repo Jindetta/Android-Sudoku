@@ -33,6 +33,8 @@ public class SettingsActivity extends AppCompatActivity {
 
         CheckBox displayHints = findViewById(R.id.toggleHints);
         displayHints.setChecked(prefs.getBoolean("hints", true));
+
+        setTitle(R.string.settings);
     }
 
     /**
