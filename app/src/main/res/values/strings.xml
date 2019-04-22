@@ -23,6 +23,7 @@
 
     <string name="hints">Toggle hints</string>
     <string name="highlight">Toggle highlighting</string>
+    <string name="save">Save</string>
 
     <string name="start">Start game</string>
     <string name="settings">Settings</string>
